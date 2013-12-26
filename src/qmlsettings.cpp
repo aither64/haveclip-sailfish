@@ -8,6 +8,26 @@ QmlSettings::QmlSettings(QObject *parent) :
     m_nodeModel->setStringList(m_manager->settings()->value("Pool/Nodes").toStringList());
 }
 
+QString QmlSettings::host()
+{
+	return m_manager->host();
+}
+
+void QmlSettings::setHost(QString host)
+{
+	m_manager->setHost(host);
+}
+
+quint16 QmlSettings::port()
+{
+	return m_manager->port();
+}
+
+void QmlSettings::setPort(quint16 port)
+{
+	m_manager->setPort(port);
+}
+
 QString QmlSettings::password()
 {
     return m_manager->password();

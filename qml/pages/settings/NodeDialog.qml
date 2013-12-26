@@ -42,16 +42,19 @@ Dialog {
 
             TextField {
                 id: addrField
-                width: 480
+                width: parent.width
+                label: qsTr("IP address/hostname")
                 placeholderText: qsTr("IP address/hostname")
                 text: addr
             }
 
             TextField {
                 id: portField
-                width: 480
+                width: parent.width
+                label: qsTr("Port")
                 placeholderText: qsTr("Port")
                 text: port
+                inputMethodHints: Qt.ImhDigitsOnly
             }
         }
 
