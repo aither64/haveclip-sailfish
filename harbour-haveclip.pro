@@ -49,7 +49,6 @@ SOURCES += \
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
     qml/pages/Settings.qml \
     qml/pages/settings/Connection.qml \
     qml/pages/settings/Pool.qml \
@@ -60,7 +59,8 @@ OTHER_FILES += \
     rpm/harbour-haveclip.yaml \
     harbour-haveclip.desktop \
     harbour-haveclip.png \
-    qml/pages/About.qml
+    qml/pages/About.qml \
+    qml/pages/History.qml
 
 HEADERS += \
     haveclip-core/src/History.h \

@@ -4,6 +4,10 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
+    RemorsePopup {
+        id: remorseHistory
+    }
+
     SilicaListView {
         id: listView
         model: historyModel
@@ -11,6 +15,11 @@ Page {
         header: PageHeader {
             id: pageHeader
             title: qsTr("Clipboard history")
+        }
+
+        ViewPlaceholder {
+            enabled: listView.count == 0
+            text: qsTr("History is empty")
         }
 
         PullDownMenu {
@@ -21,7 +30,13 @@ Page {
 
             MenuItem {
                 text: qsTr("Clear history")
-                onClicked: historyModel.clear()
+                onClicked: {
+                    var model = historyModel
+
+                    remorseHistory.execute(qsTr("Clearing history"), function () {
+                        model.clear()
+                    })
+                }
             }
 
             MenuItem {
@@ -29,6 +44,7 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
             }
         }
+
         delegate: ListItem {
             id: delegate
             menu: contextMenuComponent
