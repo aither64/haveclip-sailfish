@@ -59,7 +59,8 @@ OTHER_FILES += \
     rpm/harbour-haveclip.spec \
     rpm/harbour-haveclip.yaml \
     harbour-haveclip.desktop \
-    harbour-haveclip.png
+    harbour-haveclip.png \
+    qml/pages/About.qml
 
 HEADERS += \
     haveclip-core/src/History.h \

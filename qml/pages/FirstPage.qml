@@ -15,6 +15,11 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                text: qsTr("About...")
+                onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
+            }
+
+            MenuItem {
                 text: qsTr("Clear history")
                 onClicked: historyModel.clear()
             }
