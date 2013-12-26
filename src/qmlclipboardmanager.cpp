@@ -9,6 +9,10 @@ QmlClipboardManager::QmlClipboardManager(QObject *parent) :
     connect(m_history, SIGNAL(historyChanged()), this, SLOT(historyChange()));
 }
 
+QString QmlClipboardManager::version()
+{
+	return VERSION;
+}
 
 QString QmlClipboardManager::content()
 {

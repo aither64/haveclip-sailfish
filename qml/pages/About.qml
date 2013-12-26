@@ -35,7 +35,7 @@ Page {
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
-                text: qsTr("version v") + "0.11.0"
+                text: qsTr("version v") + manager.version
             }
 
             Label {
@@ -59,26 +59,26 @@ Page {
 
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
                 text: "Developed by"
             }
 
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
                 textFormat: Text.RichText
-                font.pixelSize: Theme.fontSizeSmall
                 text: page.styledRichText("Jakub Skokan &lt;<a href=\"mailto:aither@havefun.cz\">aither@havefun.cz</a>&gt;")
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
                 text: "Icon created by"
             }
 
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
                 textFormat: Text.RichText
-                font.pixelSize: Theme.fontSizeSmall
                 text: page.styledRichText("Aleš Kocur &lt;<a href=\"mailto:kafe@havefun.cz\">kafe@havefun.cz</a>&gt;")
                 onLinkActivated: Qt.openUrlExternally(link)
             }

@@ -7,10 +7,14 @@
 class QmlClipboardManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString content READ content NOTIFY contentChanged)
 
 public:
     explicit QmlClipboardManager(QObject *parent = 0);
+
+	Q_PROPERTY(QString version READ version)
+	QString version();
+
+	Q_PROPERTY(QString content READ content NOTIFY contentChanged)
     QString content();
 
 signals:
