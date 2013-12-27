@@ -2,6 +2,10 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
+    RemorsePopup {
+        id: remorseDelete
+    }
+
     SilicaListView {
         id: listView
         anchors.fill: parent
@@ -22,7 +26,12 @@ Page {
 
             MenuItem {
                 text: qsTr("Delete all")
-                onClicked: settings.deleteAllNodes();
+                onClicked: {
+                    var s = settings
+                    remorseDelete.execute(qsTr("Deleting all nodes"), function() {
+                        s.deleteAllNodes()
+                    })
+                }
             }
 
             MenuItem {
@@ -57,9 +66,19 @@ Page {
                 ContextMenu {
                     MenuItem {
                         text: qsTr("Delete")
-                        onClicked: settings.deleteNodeAt(model.index)
+                        onClicked: {
+                            var idx = index
+                            var s = settings
+                            remorseItem.execute(listItem, qsTr("Deleting node"), function() {
+                                s.deleteNodeAt(idx)
+                            })
+                        }
                     }
                 }
+            }
+
+            RemorseItem {
+                id: remorseItem
             }
 
             onClicked: {
