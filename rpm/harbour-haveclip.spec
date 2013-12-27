@@ -13,10 +13,10 @@ Name:       harbour-haveclip
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Clipboard synchronization tool
-Version:    0.1
+Version:    0.11.0
 Release:    1
 Group:      Qt/Qt
-License:    LICENSE
+License:    GPL
 URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-haveclip.yaml
@@ -28,8 +28,7 @@ BuildRequires:  pkgconfig(sailfishapp) >= 0.0.10
 BuildRequires:  desktop-file-utils
 
 %description
-Short description of my SailfishOS Application
-
+Peer-to-peer clipboard synchronization tool.
 
 %prep
 %setup -q -n %{name}-%{version}
