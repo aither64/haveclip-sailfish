@@ -59,7 +59,8 @@ Page {
                     var dialog = pageStack.push("NodeDialog.qml", {"headerText": qsTr("Add node")})
 
                     dialog.accepted.connect(function() {
-                        settings.addNode(dialog.addr, dialog.port)
+                        if(dialog.isOk)
+                            settings.addNode(dialog.addr, dialog.port)
                     })
                 }
             }
@@ -113,7 +114,7 @@ Page {
                 dialog.accepted.connect(function() {
                     if(dialog.shouldDelete)
                         settings.deleteNodeAt(model.index)
-                    else
+                    else if(dialog.isOk)
                         settings.updateNodeAt(model.index, dialog.addr, dialog.port)
                 })
             }

@@ -26,6 +26,7 @@ Dialog {
     property string headerText
     property bool canDelete: false
     property bool shouldDelete: false
+    property bool isOk: false
     property int index
 
     id: dialog
@@ -65,6 +66,9 @@ Dialog {
                 label: qsTr("IP address/hostname")
                 placeholderText: qsTr("IP address/hostname")
                 text: addr
+                validator: RegExpValidator {
+                    regExp: /^[^\s]+$/
+                }
             }
 
             TextField {
@@ -74,6 +78,10 @@ Dialog {
                 placeholderText: qsTr("Port")
                 text: port
                 inputMethodHints: Qt.ImhDigitsOnly
+                validator: IntValidator {
+                    bottom: 1
+                    top: 65535
+                }
             }
         }
 
@@ -84,6 +92,7 @@ Dialog {
         if(result == DialogResult.Accepted) {
             addr = addrField.text
             port = portField.text
+            isOk = !addrField.errorHighlight && !portField.errorHighlight
         }
     }
 }

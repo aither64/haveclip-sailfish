@@ -41,6 +41,9 @@ Page {
                 label: qsTr("IP address or hostname")
                 placeholderText: qsTr("IP address or hostname")
                 text: settings.host
+                validator: RegExpValidator {
+                    regExp: /^[^\s]+$/
+                }
                 onTextChanged: settings.host = text
             }
 
@@ -50,6 +53,10 @@ Page {
                 placeholderText: qsTr("Port")
                 text: settings.port
                 inputMethodHints: Qt.ImhDigitsOnly
+                validator: IntValidator {
+                    bottom: 1024
+                    top: 65535
+                }
                 onTextChanged: settings.port = parseInt(text)
             }
 
