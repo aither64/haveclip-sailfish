@@ -21,7 +21,6 @@
 #define QMLSETTINGS_H
 
 #include <QObject>
-#include <QStringListModel>
 #include "../haveclip-core/src/ClipboardManager.h"
 
 class QmlSettings : public QObject
@@ -43,9 +42,6 @@ public:
     QString password();
 	void setPassword(QString password);
 
-	Q_PROPERTY(QObject* nodeModel READ nodeModel)
-    QStringListModel* nodeModel();
-
 	Q_PROPERTY(bool historyEnabled READ isHistoryEnabled WRITE setHistoryEnabled NOTIFY historyEnabledChanged)
 	bool isHistoryEnabled() const;
 	void setHistoryEnabled(bool enabled);
@@ -62,10 +58,6 @@ public:
 	bool isSyncEnabled() const;
 	void setSyncEnabled(bool enabled);
 
-    Q_INVOKABLE void addNode(QString addr, QString port);
-    Q_INVOKABLE void updateNodeAt(int index, QString addr, QString port);
-    Q_INVOKABLE void deleteNodeAt(int index);
-    Q_INVOKABLE void deleteAllNodes();
 	Q_INVOKABLE void save();
 
 signals:
@@ -79,7 +71,6 @@ public slots:
 
 private:
     ClipboardManager *m_manager;
-    QStringListModel *m_nodeModel;
 };
 
 #endif // QMLSETTINGS_H

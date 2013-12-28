@@ -19,16 +19,21 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import HaveClip 1.0
 
 Page {
     RemorsePopup {
         id: remorseDelete
     }
 
+    NodeModel {
+        id: nodeModel
+    }
+
     SilicaListView {
         id: listView
         anchors.fill: parent
-        model: settings.nodeModel
+        model: nodeModel
         header: PageHeader {
             id: pageHeader
             title: qsTr("Pool")
@@ -46,9 +51,9 @@ Page {
             MenuItem {
                 text: qsTr("Delete all")
                 onClicked: {
-                    var s = settings
+                    var model = nodeModel
                     remorseDelete.execute(qsTr("Deleting all nodes"), function() {
-                        s.deleteAllNodes()
+                        model.deleteAll()
                     })
                 }
             }
@@ -60,7 +65,7 @@ Page {
 
                     dialog.accepted.connect(function() {
                         if(dialog.isOk)
-                            settings.addNode(dialog.addr, dialog.port)
+                            nodeModel.add(dialog.addr, dialog.port)
                     })
                 }
             }
@@ -74,7 +79,7 @@ Page {
 
             Label {
                 x: Theme.paddingLarge
-                text: display
+                text: host + ":" + port
                 anchors.verticalCenter: parent.verticalCenter
                 font.capitalization: Font.Capitalize
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
@@ -87,10 +92,10 @@ Page {
                     MenuItem {
                         text: qsTr("Delete")
                         onClicked: {
-                            var idx = index
-                            var s = settings
+                            var p = pointer
+                            var model = nodeModel
                             remorseItem.execute(listItem, qsTr("Deleting node"), function() {
-                                s.deleteNodeAt(idx)
+                                model.remove(p)
                             })
                         }
                     }
@@ -102,20 +107,19 @@ Page {
             }
 
             onClicked: {
-                var node = display.split(":")
                 var dialog = pageStack.push("NodeDialog.qml", {
                     "headerText": qsTr("Edit node"),
                     "index": model.index,
                     "canDelete": true,
-                    "addr": node[0],
-                    "port": node[1]
+                    "addr": host,
+                    "port": port
                 })
 
                 dialog.accepted.connect(function() {
                     if(dialog.shouldDelete)
-                        settings.deleteNodeAt(model.index)
+                        nodeModel.remove(model.pointer)
                     else if(dialog.isOk)
-                        settings.updateNodeAt(model.index, dialog.addr, dialog.port)
+                        nodeModel.updateAt(model.index, dialog.addr, dialog.port)
                 })
             }
         }

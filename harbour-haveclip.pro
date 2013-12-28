@@ -45,7 +45,8 @@ SOURCES += \
     haveclip-core/src/PasteServices/Stikked/Stikked.cpp \
     src/qmlclipboardmanager.cpp \
     src/qmlsettings.cpp \
-    src/harbour-haveclip.cpp
+    src/harbour-haveclip.cpp \
+    src/nodemodel.cpp
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -95,4 +96,5 @@ HEADERS += \
     haveclip-core/src/PasteServices/Pastebin/Pastebin.h \
     haveclip-core/src/PasteServices/Stikked/Stikked.h \
     src/qmlclipboardmanager.h \
-    src/qmlsettings.h
+    src/qmlsettings.h \
+    src/nodemodel.h

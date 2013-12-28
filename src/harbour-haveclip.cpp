@@ -23,6 +23,7 @@
 #include "../haveclip-core/src/ClipboardManager.h"
 #include "qmlclipboardmanager.h"
 #include "qmlsettings.h"
+#include "nodemodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +32,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("HaveClip");
 
     QGuiApplication *app = SailfishApp::application(argc, argv);
+
+	qmlRegisterType<NodeModel>("HaveClip", 1, 0, "NodeModel");
 
     ClipboardManager manager;
 	manager.delayedStart(500);
