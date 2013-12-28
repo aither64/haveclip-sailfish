@@ -82,7 +82,7 @@ Page {
 
             Label {
                 x: Theme.paddingLarge
-                text: formatItem(display)
+                text: formatItem(plaintext)
                 anchors.verticalCenter: parent.verticalCenter
                 color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
@@ -98,10 +98,11 @@ Page {
                     MenuItem {
                         text: qsTr("Delete")
                         onClicked: {
-                            var idx = index
+                            var p = pointer
                             var model = historyModel
+
                             remorse.execute(delegate, qsTr("Deleting"), function() {
-                                model.remove(idx)
+                                model.remove(p)
                             })
                         }
                     }
