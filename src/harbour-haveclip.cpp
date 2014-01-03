@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication *app = SailfishApp::application(argc, argv);
 
-	qmlRegisterType<NodeModel>("HaveClip", 1, 0, "NodeModel");
+	qmlRegisterType<NodeModel>("harbour.haveclip.models", 1, 0, "NodeModel");
 
     ClipboardManager manager;
 	manager.delayedStart(500);
