@@ -2,7 +2,7 @@
 #define NODEMODEL_H
 
 #include <QAbstractListModel>
-#include "../haveclip-core/src/ClipboardManager.h"
+#include "../haveclip-core/src/Node.h"
 
 class NodeModel : public QAbstractListModel
 {
@@ -25,8 +25,7 @@ public:
 	Q_INVOKABLE void updateAt(int i, QString host, quint16 port);
 
 private:
-	ClipboardManager *m_manager;
-	QList<ClipboardManager::Node*> m_nodes;
+    QList<Node> m_nodes;
 
 };
 

@@ -59,18 +59,6 @@ Page {
                 }
                 onTextChanged: settings.port = parseInt(text)
             }
-
-            SectionHeader {
-                text: qsTr("Access policy")
-            }
-
-            TextField {
-                width: parent.width
-                label: qsTr("Password")
-                placeholderText: qsTr("Password")
-                text: settings.password
-                onTextChanged: settings.password = text
-            }
         }
     }
 }

@@ -18,6 +18,7 @@
 */
 
 #include "qmlclipboardmanager.h"
+#include "../haveclip-core/src/Version.h"
 
 QmlClipboardManager::QmlClipboardManager(QObject *parent) :
     QObject(parent)

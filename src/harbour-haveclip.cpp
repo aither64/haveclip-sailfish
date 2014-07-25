@@ -20,9 +20,9 @@
 #include <QtQuick>
 
 #include <sailfishapp.h>
+#include "../haveclip-core/src/Settings.h"
 #include "../haveclip-core/src/ClipboardManager.h"
 #include "qmlclipboardmanager.h"
-#include "qmlsettings.h"
 #include "nodemodel.h"
 
 int main(int argc, char *argv[])
@@ -36,15 +36,14 @@ int main(int argc, char *argv[])
 	qmlRegisterType<NodeModel>("harbour.haveclip.models", 1, 0, "NodeModel");
 
     ClipboardManager manager;
-	manager.delayedStart(500);
+    manager.delayedStart(500);
 
-    QmlSettings settings;
     QmlClipboardManager qmlManager;
 
     QQuickView *view = SailfishApp::createView();
     QQmlContext *context = view->engine()->rootContext();
 
-    context->setContextProperty("settings", &settings);
+    context->setContextProperty("settings", Settings::get());
     context->setContextProperty("manager", &qmlManager);
 	context->setContextProperty("historyModel", manager.history());
 
