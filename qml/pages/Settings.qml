@@ -37,8 +37,13 @@ Page {
         }
 
         ListElement {
-            page: "Connection.qml"
-            title: "Connection"
+            page: "Network.qml"
+            title: "Network"
+        }
+
+        ListElement {
+            page: "Security.qml"
+            title: "Security"
         }
     }
 

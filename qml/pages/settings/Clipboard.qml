@@ -42,10 +42,16 @@ Page {
                 id: keepHistory
                 text: qsTr("Keep history")
                 checked: settings.historyEnabled
-                onCheckedChanged: settings.historyEnabled = checked
+            }
+
+            Binding {
+                target: settings
+                property: "historyEnabled"
+                value: keepHistory.checked
             }
 
             Slider {
+                id: historySize
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 minimumValue: 1
@@ -56,24 +62,42 @@ Page {
                 handleVisible: enabled
                 label: qsTr("History size")
                 valueText: value.toString() + " " + (value == 1 ? qsTr("entry") : qsTr("entries"))
-                onValueChanged: settings.historySize = value
+            }
+
+            Binding {
+                target: settings
+                property: "historySize"
+                value: historySize.value
             }
 
             TextSwitch {
+                id: saveHistory
                 text: qsTr("Save history to disk")
                 enabled: keepHistory.checked
                 checked: settings.saveHistory
-                onCheckedChanged: settings.keepHistory = checked
             }
+
+            Binding {
+                target: settings
+                property: "saveHistory"
+                value: saveHistory.checked
+            }
+
 
             SectionHeader {
                 text: qsTr("Synchronization")
             }
 
             TextSwitch {
+                id: syncEnabled
                 text: qsTr("Enable synchronization")
                 checked: settings.syncEnabled
-                onCheckedChanged: settings.syncEnabled = checked
+            }
+
+            Binding {
+                target: settings
+                property: "syncEnabled"
+                value: syncEnabled.checked
             }
         }
     }

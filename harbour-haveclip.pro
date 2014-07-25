@@ -44,7 +44,6 @@ SOURCES += \
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
     qml/pages/Settings.qml \
-    qml/pages/settings/Connection.qml \
     qml/pages/settings/Pool.qml \
     qml/pages/settings/NodeDialog.qml \
     qml/pages/settings/Clipboard.qml \
@@ -54,7 +53,9 @@ OTHER_FILES += \
     harbour-haveclip.desktop \
     harbour-haveclip.png \
     qml/pages/About.qml \
-    qml/pages/History.qml
+    qml/pages/History.qml \
+    qml/pages/settings/Network.qml \
+    qml/pages/settings/Security.qml
 
 HEADERS += \
     src/qmlclipboardmanager.h \
