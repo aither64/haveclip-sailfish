@@ -36,7 +36,53 @@ Page {
                 text: qsTr("Encryption")
             }
 
+            ComboBox {
+                id: mode
+                width: parent.width
+                label: "Mode"
 
+                menu: ContextMenu {
+                    MenuItem { text: "None" }
+                    MenuItem { text: "SSL" }
+                    MenuItem { text: "TLS" }
+                }
+
+                currentIndex: settings.encryption
+            }
+
+            Binding {
+                target: settings
+                property: "encryption"
+                value: mode.currentIndex
+            }
+
+            TextField {
+                id: certificate
+                width: parent.width
+                label: qsTr("Certificate path")
+                placeholderText: qsTr("certificate path")
+                text: settings.certificatePath
+            }
+
+            Binding {
+                target: settings
+                property: "certificatePath"
+                value: certificate.text
+            }
+
+            TextField {
+                id: privateKey
+                width: parent.width
+                label: qsTr("Private key")
+                placeholderText: qsTr("Private key")
+                text: settings.privateKeyPath
+            }
+
+            Binding {
+                target: settings
+                property: "privateKeyPath"
+                value: privateKey.text
+            }
         }
     }
 }
