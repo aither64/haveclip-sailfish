@@ -11,6 +11,8 @@ TARGET = harbour-haveclip
 CONFIG += sailfishapp
 DEFINES += MER_SAILFISH
 
+INCLUDEPATH += ./haveclip-core/src
+
 SOURCES += \
     src/qmlclipboardmanager.cpp \
     src/harbour-haveclip.cpp \
@@ -39,7 +41,10 @@ SOURCES += \
     haveclip-core/src/Network/Conversations/Verification.cpp \
     haveclip-core/src/Network/Conversations/Introduction.cpp \
     haveclip-core/src/Network/Conversations/ClipboardUpdate.cpp \
-    haveclip-core/src/ConfigMigrations/V2Migration.cpp
+    haveclip-core/src/ConfigMigrations/V2Migration.cpp \
+    src/nodediscoverymodel.cpp \
+    src/qmlnode.cpp \
+    src/qmlhelpers.cpp
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -55,7 +60,9 @@ OTHER_FILES += \
     qml/pages/About.qml \
     qml/pages/History.qml \
     qml/pages/settings/Network.qml \
-    qml/pages/settings/Security.qml
+    qml/pages/settings/Security.qml \
+    qml/pages/settings/verificationwizard/Search.qml \
+    qml/pages/settings/verificationwizard/Verify.qml
 
 HEADERS += \
     src/qmlclipboardmanager.h \
@@ -85,4 +92,7 @@ HEADERS += \
     haveclip-core/src/Network/Conversations/Verification.h \
     haveclip-core/src/Network/Conversations/Introduction.h \
     haveclip-core/src/Network/Conversations/ClipboardUpdate.h \
-    haveclip-core/src/ConfigMigrations/V2Migration.h
+    haveclip-core/src/ConfigMigrations/V2Migration.h \
+    src/nodediscoverymodel.h \
+    src/qmlnode.h \
+    src/qmlhelpers.h

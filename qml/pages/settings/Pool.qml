@@ -61,7 +61,7 @@ Page {
             MenuItem {
                 text: qsTr("Add node")
                 onClicked: {
-                    var dialog = pageStack.push("NodeDialog.qml", {"headerText": qsTr("Add node")})
+                    var dialog = pageStack.push("verificationwizard/Search.qml")
 
                     dialog.accepted.connect(function() {
                         if(dialog.isOk)

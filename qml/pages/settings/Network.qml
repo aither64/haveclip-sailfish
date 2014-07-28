@@ -23,6 +23,7 @@ import Sailfish.Silica 1.0
 Page {
     SilicaFlickable {
         anchors.fill: parent
+        contentHeight: column.height
 
         VerticalScrollDecorator {
             flickable: parent
@@ -116,8 +117,8 @@ Page {
                 label: qsTr("Max clipboard size to send")
                 value: settings.maxSendSize / 1024 / 1024
                 minimumValue: 0
-                maximumValue: 1000
-                stepSize: 5
+                maximumValue: 100
+                stepSize: 1
                 valueText: value + " MB"
             }
 
@@ -133,8 +134,8 @@ Page {
                 label: qsTr("Max clipboard size to receive")
                 value: settings.maxReceiveSize / 1024 / 1024
                 minimumValue: 0
-                maximumValue: 1000
-                stepSize: 5
+                maximumValue: 100
+                stepSize: 1
                 valueText: value + " MB"
             }
 

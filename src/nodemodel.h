@@ -25,7 +25,7 @@ public:
 	Q_INVOKABLE void updateAt(int i, QString host, quint16 port);
 
 private:
-    QList<Node> m_nodes;
+	QList<Node> m_nodes;
 
 };
 
