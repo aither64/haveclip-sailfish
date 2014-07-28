@@ -19,29 +19,26 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import harbour.haveclip.core 1.0
 
 Dialog {
-    property string addr
-    property string port
-    property string headerText
-    property bool canDelete: false
+    property Node node
     property bool shouldDelete: false
     property bool isOk: false
-    property int index
 
     id: dialog
+    canAccept: !nameField.errorHighlight && !addrField.errorHighlight && !portField.errorHighlight
 
     SilicaFlickable {
         anchors.fill: parent
+        contentHeight: column.height
 
-        Component.onCompleted: {
-            if(!canDelete)
-                menu.destroy()
+        VerticalScrollDecorator {
+            flickable: parent
         }
 
         PullDownMenu {
             id: menu
-            visible: canDelete
 
             MenuItem {
                 text: qsTr("Delete")
@@ -57,7 +54,28 @@ Dialog {
             width: dialog.width
 
             DialogHeader {
-                acceptText: headerText
+                acceptText: qsTr("Edit node")
+            }
+
+            SectionHeader {
+                text: qsTr("Description")
+            }
+
+            TextField {
+                id: nameField
+                width: parent.width
+                label: qsTr("Name")
+                placeholderText: qsTr("Name")
+                text: node.name
+                validator: RegExpValidator {
+                    regExp: /.+/
+                }
+            }
+
+            Binding {
+                target: node
+                property: "name"
+                value: nameField.text
             }
 
             TextField {
@@ -65,10 +83,16 @@ Dialog {
                 width: parent.width
                 label: qsTr("IP address/hostname")
                 placeholderText: qsTr("IP address/hostname")
-                text: addr
+                text: node.host
                 validator: RegExpValidator {
                     regExp: /^[^\s]+$/
                 }
+            }
+
+            Binding {
+                target: node
+                property: "host"
+                value: addrField.text
             }
 
             TextField {
@@ -76,23 +100,23 @@ Dialog {
                 width: parent.width
                 label: qsTr("Port")
                 placeholderText: qsTr("Port")
-                text: port
+                text: node.port
                 inputMethodHints: Qt.ImhDigitsOnly
                 validator: IntValidator {
                     bottom: 1
                     top: 65535
                 }
             }
-        }
 
-        contentHeight: column.height
+            Binding {
+                target: node
+                property: "port"
+                value: portField.text
+            }
+        }
     }
 
     onDone: {
-        if(result == DialogResult.Accepted) {
-            addr = addrField.text
-            port = portField.text
-            isOk = !addrField.errorHighlight && !portField.errorHighlight
-        }
+
     }
 }

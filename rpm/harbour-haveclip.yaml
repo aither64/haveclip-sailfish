@@ -1,9 +1,9 @@
 Name: harbour-haveclip
 Summary: Clipboard synchronization tool
-Version: 0.12.0
+Version: 0.13.0
 Release: 1
 Group: Qt/Qt
-URL: http://example.org/
+URL: http://www.havefun.cz/projects/haveclip
 License: GPL
 Sources:
 - '%{name}-%{version}.tar.bz2'

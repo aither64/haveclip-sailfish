@@ -79,7 +79,7 @@ Page {
 
             Label {
                 x: Theme.paddingLarge
-                text: host + ":" + port
+                text: name.length ? name : (host + ":" + port)
                 anchors.verticalCenter: parent.verticalCenter
                 font.capitalization: Font.Capitalize
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
@@ -92,10 +92,10 @@ Page {
                     MenuItem {
                         text: qsTr("Delete")
                         onClicked: {
-                            var p = pointer
+                            var node_id = id
                             var model = nodeModel
                             remorseItem.execute(listItem, qsTr("Deleting node"), function() {
-                                model.remove(p)
+                                model.removeId(node_id)
                             })
                         }
                     }
@@ -108,18 +108,15 @@ Page {
 
             onClicked: {
                 var dialog = pageStack.push("NodeDialog.qml", {
-                    "headerText": qsTr("Edit node"),
-                    "index": model.index,
-                    "canDelete": true,
-                    "addr": host,
-                    "port": port
+                    "node": nodeModel.nodeAt(index),
                 })
 
                 dialog.accepted.connect(function() {
                     if(dialog.shouldDelete)
-                        nodeModel.remove(model.pointer)
-                    else if(dialog.isOk)
-                        nodeModel.updateAt(model.index, dialog.addr, dialog.port)
+                        nodeModel.remove(dialog.node)
+
+                    else
+                        nodeModel.update(dialog.node)
                 })
             }
         }

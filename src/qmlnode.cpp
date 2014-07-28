@@ -11,6 +11,11 @@ QmlNode::QmlNode(const Node &n, QObject *parent) :
 {
 }
 
+unsigned int QmlNode::id() const
+{
+	return m_node.id();
+}
+
 QString QmlNode::name() const
 {
 	return m_node.name();

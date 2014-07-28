@@ -4,28 +4,33 @@
 #include <QAbstractListModel>
 #include "../haveclip-core/src/Node.h"
 
+class QmlNode;
+
 class NodeModel : public QAbstractListModel
 {
 	Q_OBJECT
 public:
 	enum NodeModelRoles {
-		HostRole = Qt::UserRole + 1,
-		PortRole,
-		PointerRole
+		NameRole = Qt::UserRole + 1,
+		IdRole,
+		HostRole,
+		PortRole
 	};
 
 	explicit NodeModel(QObject *parent = 0);
 	QHash<int, QByteArray> roleNames() const;
 	int rowCount(const QModelIndex &parent) const;
 	QVariant data(const QModelIndex &index, int role) const;
-	Q_INVOKABLE void remove(QVariant v);
+	Q_INVOKABLE void remove(QmlNode *n);
+	Q_INVOKABLE void removeId(unsigned int id);
 	bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
 	Q_INVOKABLE void deleteAll();
-	Q_INVOKABLE void add(QString host, quint16 port);
-	Q_INVOKABLE void updateAt(int i, QString host, quint16 port);
+	Q_INVOKABLE void update(QmlNode *n);
+	Q_INVOKABLE QmlNode* nodeAt(int i);
 
 private:
 	QList<Node> m_nodes;
+	QmlNode *m_qmlNode;
 
 };
 

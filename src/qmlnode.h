@@ -12,6 +12,9 @@ public:
 	explicit QmlNode(QObject *parent = 0);
 	QmlNode(const Node& n, QObject *parent = 0);
 
+	Q_PROPERTY(unsigned int id READ id)
+	unsigned int id() const;
+
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 	QString name() const;
 	void setName(QString name);

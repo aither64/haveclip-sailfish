@@ -13,11 +13,11 @@ Name:       harbour-haveclip
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Clipboard synchronization tool
-Version:    0.12.0
+Version:    0.13.0
 Release:    1
 Group:      Qt/Qt
 License:    GPL
-URL:        http://example.org/
+URL:        http://www.havefun.cz/projects/haveclip
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-haveclip.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
