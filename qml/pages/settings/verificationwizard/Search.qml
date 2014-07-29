@@ -29,9 +29,20 @@ Dialog {
     acceptDestination: Qt.resolvedUrl("Verify.qml")
 
     onAccepted: {
-        acceptDestinationInstance.returnPage = pageStack.previousPage(dialog)
         acceptDestinationInstance.host = addrField.text
         acceptDestinationInstance.port = parseInt(portField.text)
+
+        var d = dialog
+
+        acceptDestinationInstance.accepted.connect(function(){
+            d.acceptDestination = null
+
+            d.statusChanged.connect(function() {
+                if(d.status == PageStatus.Active) {
+                    d.accept()
+                }
+            })
+        })
     }
 
     SilicaFlickable {
@@ -116,7 +127,7 @@ Dialog {
                         Label {
                             font.pixelSize: Theme.fontSizeExtraSmall
                             text: host + ":" + port
-                            color: delegate.highlighted ? Theme.secondaryHightlightColor : Theme.secondaryColor
+                            color: delegate.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                         }
                     }
 

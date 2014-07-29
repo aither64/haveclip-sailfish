@@ -26,7 +26,6 @@ Dialog {
     property int port
     property bool introduced: false
     property bool error: false
-    property Page returnPage
 
     id: dialog
     canAccept: false
@@ -102,7 +101,6 @@ Dialog {
         })
 
         conman.verificationFinished.connect(function(status){
-            console.log("Yahoo!")
             d.canAccept = true
             d.accept()
         })
