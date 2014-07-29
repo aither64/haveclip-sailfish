@@ -27,6 +27,7 @@ Dialog {
     property bool isOk: false
 
     id: dialog
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
     canAccept: !nameField.errorHighlight && !addrField.errorHighlight && !portField.errorHighlight
 
     SilicaFlickable {

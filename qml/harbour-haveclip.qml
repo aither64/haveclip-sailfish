@@ -25,4 +25,5 @@ ApplicationWindow
 {
     initialPage: Component { History { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 }

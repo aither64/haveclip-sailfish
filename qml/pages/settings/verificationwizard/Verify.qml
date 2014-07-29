@@ -28,6 +28,7 @@ Dialog {
     property bool error: false
 
     id: dialog
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
     canAccept: false
 
     SilicaFlickable {

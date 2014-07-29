@@ -22,6 +22,8 @@ import Sailfish.Silica 1.0
 import harbour.haveclip.models 1.0
 
 Page {
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
+
     RemorsePopup {
         id: remorseDelete
     }

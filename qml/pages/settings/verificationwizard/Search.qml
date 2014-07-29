@@ -24,6 +24,7 @@ import harbour.haveclip.models 1.0
 
 Dialog {
     id: dialog
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
     canAccept: !addrField.errorHighlight && !portField.errorHighlight
 
     acceptDestination: Qt.resolvedUrl("Verify.qml")

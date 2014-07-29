@@ -22,6 +22,7 @@ import Sailfish.Silica 1.0
 
 Page {
     id: settingsPage
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     ListModel {
         id: pagesModel
