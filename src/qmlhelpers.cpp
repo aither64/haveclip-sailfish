@@ -12,7 +12,7 @@ QmlHelpers::QmlHelpers(QObject *parent) :
 {
 	m_selfCert = new QmlSslCertificate(Settings::get()->certificate(), this);
 
-	connect(Settings::get(), SIGNAL(certificateChanged(QSslCertificate&)), this, SLOT(updateSelfSslCertificate(QSslCertificate&)));
+	connect(Settings::get(), SIGNAL(certificateChanged(QSslCertificate)), this, SLOT(updateSelfSslCertificate(QSslCertificate)));
 }
 
 QmlSslCertificate* QmlHelpers::selfSslCertificate() const
