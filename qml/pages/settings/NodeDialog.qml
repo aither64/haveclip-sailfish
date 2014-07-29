@@ -116,6 +116,34 @@ Dialog {
             }
 
             SectionHeader {
+                text: qsTr("Synchronization")
+            }
+
+            TextSwitch {
+                id: sendEnabled
+                text: qsTr("Send the clipboard to this node")
+                checked: node.sendEnabled
+            }
+
+            Binding {
+                target: node
+                property: "sendEnabled"
+                value: sendEnabled.checked
+            }
+
+            TextSwitch {
+                id: recvEnabled
+                text: qsTr("Receive the clipboard from this node")
+                checked: node.receiveEnabled
+            }
+
+            Binding {
+                target: node
+                property: "receiveEnabled"
+                value: recvEnabled.checked
+            }
+
+            SectionHeader {
                 text: qsTr("Identity")
             }
 
