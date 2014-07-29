@@ -11,6 +11,9 @@ public:
 	explicit QmlSslCertificate(QObject *parent = 0);
 	QmlSslCertificate(const QSslCertificate &cert, QObject *parent = 0);
 
+	Q_PROPERTY(bool null READ isNull NOTIFY nullChanged)
+	bool isNull() const;
+
 	Q_PROPERTY(QString commonName READ commonName NOTIFY commonNameChanged)
 	QString commonName() const;
 
@@ -35,7 +38,10 @@ public:
 	Q_PROPERTY(QString md5Digest READ md5Digest NOTIFY md5DigestChanged)
 	QString md5Digest() const;
 
+	void setCertificate(const QSslCertificate &cert);
+
 signals:
+	void nullChanged();
 	void commonNameChanged();
 	void organizationChanged();
 	void organizationUnitChanged();

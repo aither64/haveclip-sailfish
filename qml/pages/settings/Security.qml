@@ -23,6 +23,9 @@ import Sailfish.Silica 1.0
 Page {
     SilicaFlickable {
         anchors.fill: parent
+        contentHeight: column.height
+
+        VerticalScrollDecorator {}
 
         Column {
             id: column
@@ -82,6 +85,76 @@ Page {
                 target: settings
                 property: "privateKeyPath"
                 value: privateKey.text
+            }
+
+            SectionHeader {
+                text: qsTr("Identity")
+            }
+
+            Column {
+                width: parent.width
+                visible: helpers.selfSslCertificate.null
+
+                Label {
+                    width: parent.width
+                    color: Theme.highlightColor
+                    text: qsTr("The certificate is not valid.")
+                    horizontalAlignment: Text.AlignHCenter
+                }
+            }
+
+            Column {
+                width: parent.width
+                visible: !helpers.selfSslCertificate.null
+
+                ValueButton {
+                    width: parent.width
+                    label: qsTr("Common name")
+                    value: helpers.selfSslCertificate.commonName
+                    enabled: false
+                }
+
+                ValueButton {
+                    width: parent.width
+                    label: qsTr("Organization")
+                    value: helpers.selfSslCertificate.organization
+                    enabled: false
+                }
+
+                ValueButton {
+                    width: parent.width
+                    label: qsTr("Organization unit")
+                    value: helpers.selfSslCertificate.organizationUnit
+                    enabled: false
+                }
+
+                ValueButton {
+                    width: parent.width
+                    label: qsTr("Issued on")
+                    value: Qt.formatDateTime(helpers.selfSslCertificate.issuedOn, "d/M/yyyy")
+                    enabled: false
+                }
+
+                ValueButton {
+                    width: parent.width
+                    label: qsTr("Expires on")
+                    value: Qt.formatDateTime(helpers.selfSslCertificate.expiryDate, "d/M/yyyy")
+                    enabled: false
+                }
+
+                ValueButton {
+                    width: parent.width
+                    label: qsTr("Organization")
+                    value: helpers.selfSslCertificate.organization
+                    enabled: false
+                }
+
+                ValueButton {
+                    width: parent.width
+                    label: qsTr("SHA-1 Fingerprint")
+                    value: helpers.selfSslCertificate.sha1Digest
+                    enabled: false
+                }
             }
         }
     }

@@ -14,6 +14,11 @@ QmlSslCertificate::QmlSslCertificate(const QSslCertificate &cert, QObject *paren
 
 }
 
+bool QmlSslCertificate::isNull() const
+{
+	return m_cert.isNull();
+}
+
 QString QmlSslCertificate::commonName() const
 {
 	return subjectInfo(QSslCertificate::CommonName);
@@ -52,6 +57,21 @@ QString QmlSslCertificate::sha1Digest() const
 QString QmlSslCertificate::md5Digest() const
 {
 	return formatDigest(m_cert.digest(QCryptographicHash::Md5));
+}
+
+void QmlSslCertificate::setCertificate(const QSslCertificate &cert)
+{
+	m_cert = cert;
+
+	emit nullChanged();
+	emit commonNameChanged();
+	emit organizationChanged();
+	emit organizationUnitChanged();
+	emit serialNumberChanged();
+	emit issuedOnChanged();
+	emit expiryDateChanged();
+	emit sha1DigestChanged();
+	emit md5DigestChanged();
 }
 
 QString QmlSslCertificate::formatDigest(QByteArray raw) const
