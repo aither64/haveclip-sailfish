@@ -28,6 +28,10 @@ public:
 	Q_INVOKABLE void update(QmlNode *n);
 	Q_INVOKABLE QmlNode* nodeAt(int i);
 
+private slots:
+	void addNode(const Node &n);
+	void updateNode(const Node &n);
+
 private:
 	QList<Node> m_nodes;
 	QmlNode *m_qmlNode;
