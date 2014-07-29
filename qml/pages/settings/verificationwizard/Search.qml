@@ -19,6 +19,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import harbour.haveclip.core 1.0
 import harbour.haveclip.models 1.0
 
 Dialog {
@@ -44,7 +45,7 @@ Dialog {
             MenuItem {
                 text: qsTr("Search local network")
                 onClicked: {
-                    discoveryModel.discover
+                    discoveryModel.discover()
                 }
             }
         }
@@ -84,16 +85,19 @@ Dialog {
             }
 
             SectionHeader {
+                id: discoveryHeader
                 text: qsTr("Auto discovery")
             }
 
             SilicaListView {
                 id: discoveryView
                 width: parent.width
-                model: NodeDiscoveryModel
+                model: discoveryModel
+                anchors.top: discoveryHeader.bottom
 
                 ViewPlaceholder {
                     enabled: discoveryModel.empty
+                    verticalOffset: -1 * discoveryView.y
                     text: ""
                     hintText: qsTr("Pull down to search local network")
                 }
@@ -101,20 +105,25 @@ Dialog {
                 delegate: ListItem {
                     id: delegate
 
-                    Label {
+                    Column {
                         x: Theme.paddingLarge
-                        text: name
-                        anchors.verticalCenter: parent.verticalCenter
-                        color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
-                        font.capitalization: Font.Capitalize
+
+                        Label {
+                            text: name
+                            color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
+                        }
+
+                        Label {
+                            font.pixelSize: Theme.fontSizeExtraSmall
+                            text: host + ":" + port
+                            color: delegate.highlighted ? Theme.secondaryHightlightColor : Theme.secondaryColor
+                        }
                     }
 
-                    Label {
-                        font.pixelSize: Theme.fontSizeSmall
-                        text: host + ":" + port
+                    onClicked: {
+                        addrField.text = host
+                        portField.text = port
                     }
-
-                    onClicked: console.log("clicked yeah")
                 }
             }
         }

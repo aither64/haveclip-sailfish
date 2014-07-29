@@ -2,14 +2,27 @@
 
 #include "../haveclip-core/src/ClipboardManager.h"
 #include "../haveclip-core/src/Network/AutoDiscovery.h"
+#include "qmlnode.h"
 
 NodeDiscoveryModel::NodeDiscoveryModel(QObject *parent) :
-	QAbstractListModel(parent)
+	QAbstractListModel(parent),
+	m_qmlNode(0)
 {
 	m_discovery = ClipboardManager::instance()->connectionManager()->autoDiscovery();
 
 	connect(m_discovery, SIGNAL(aboutToDiscover()), this, SLOT(resetDiscovery()));
 	connect(m_discovery, SIGNAL(peerDiscovered(Node)), this, SLOT(addNode(Node)));
+}
+
+QHash<int, QByteArray> NodeDiscoveryModel::roleNames() const
+{
+	QHash<int, QByteArray> roles;
+	roles[NameRole] = "name";
+	roles[IdRole] = "id";
+	roles[HostRole] = "host";
+	roles[PortRole] = "port";
+
+	return roles;
 }
 
 int NodeDiscoveryModel::columnCount(const QModelIndex &parent) const
@@ -28,25 +41,27 @@ int NodeDiscoveryModel::rowCount(const QModelIndex &parent) const
 
 QVariant NodeDiscoveryModel::data(const QModelIndex &index, int role) const
 {
-	if(role != Qt::DisplayRole)
+	if(!index.isValid())
 		return QVariant();
 
-	const int row = index.row();
-	const int col = index.column();
+	const Node &node = m_nodes[index.row()];
 
-	switch(col)
+	switch(role)
 	{
-	case Name:
-		return m_nodes[row].name();
+	case Qt::DisplayRole:
+		return QString("%1:%2").arg(node.host()).arg(node.port());
 
-	case Compatible:
-		return m_nodes[row].isCompatible() ? tr("compatible") : tr("not compatible");
+	case NameRole:
+		return node.name();
 
-	case HostAddress:
-		return m_nodes[row].host();
+	case IdRole:
+		return node.id();
 
-	case HostPort:
-		return m_nodes[row].port();
+	case HostRole:
+		return node.host();
+
+	case PortRole:
+		return node.port();
 
 	default:
 		break;
@@ -81,14 +96,25 @@ QVariant NodeDiscoveryModel::headerData(int section, Qt::Orientation orientation
 	return QVariant();
 }
 
-Node NodeDiscoveryModel::nodeAt(const QModelIndex &index)
+QmlNode* NodeDiscoveryModel::nodeAt(int i)
 {
-	return m_nodes[index.row()];
+	if(m_qmlNode)
+		m_qmlNode->setNode(m_nodes[i]);
+
+	else
+		m_qmlNode = new QmlNode(m_nodes[i], this);
+
+	return m_qmlNode;
 }
 
 bool NodeDiscoveryModel::isEmpty() const
 {
 	return m_nodes.isEmpty();
+}
+
+void NodeDiscoveryModel::discover()
+{
+	m_discovery->discover();
 }
 
 bool NodeDiscoveryModel::haveSearchedYet() const

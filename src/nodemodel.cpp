@@ -49,7 +49,7 @@ QVariant NodeModel::data(const QModelIndex &index, int role) const
 		return node.host();
 
 	case PortRole:
-	 return node.port();
+		return node.port();
 
 	default:
 		break;
