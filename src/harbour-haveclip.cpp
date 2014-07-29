@@ -26,6 +26,7 @@
 #include "nodemodel.h"
 #include "nodediscoverymodel.h"
 #include "qmlnode.h"
+#include "qmlsslcertificate.h"
 #include "qmlhelpers.h"
 
 int main(int argc, char *argv[])
@@ -40,6 +41,7 @@ int main(int argc, char *argv[])
 	qRegisterMetaType<ConnectionManager::CodeValidity>("ConnectionManager::CodeValidity");
 
 	qmlRegisterType<QmlNode>("harbour.haveclip.core", 1, 0, "Node");
+	qmlRegisterType<QmlSslCertificate>("harbour.haveclip.core", 1, 0, "SslCertificate");
 	qmlRegisterType<NodeModel>("harbour.haveclip.models", 1, 0, "NodeModel");
 	qmlRegisterType<NodeDiscoveryModel>("harbour.haveclip.models", 1, 0, "NodeDiscoveryModel");
 	qmlRegisterType<ConnectionManager>("harbour.haveclip.network", 1, 0, "ConnectionManager");

@@ -44,7 +44,8 @@ SOURCES += \
     haveclip-core/src/ConfigMigrations/V2Migration.cpp \
     src/nodediscoverymodel.cpp \
     src/qmlnode.cpp \
-    src/qmlhelpers.cpp
+    src/qmlhelpers.cpp \
+    src/qmlsslcertificate.cpp
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -95,4 +96,5 @@ HEADERS += \
     haveclip-core/src/ConfigMigrations/V2Migration.h \
     src/nodediscoverymodel.h \
     src/qmlnode.h \
-    src/qmlhelpers.h
+    src/qmlhelpers.h \
+    src/qmlsslcertificate.h

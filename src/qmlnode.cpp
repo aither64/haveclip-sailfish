@@ -1,13 +1,19 @@
 #include "qmlnode.h"
 
+#include <QDebug>
+
+#include "qmlsslcertificate.h"
+
 QmlNode::QmlNode(QObject *parent) :
-	QObject(parent)
+	QObject(parent),
+	m_sslCertificate(0)
 {
 }
 
 QmlNode::QmlNode(const Node &n, QObject *parent) :
 	QObject(parent),
-	m_node(n)
+	m_node(n),
+	m_sslCertificate(0)
 {
 }
 
@@ -54,7 +60,7 @@ void QmlNode::setPort(quint16 port)
 		return;
 
 	m_node.setPort(port);
-	emit portChanged();
+	emit portChanged(port);
 }
 
 bool QmlNode::isSendEnabled() const
@@ -85,6 +91,16 @@ void QmlNode::setReceiveEnabled(bool enabled)
 	emit receiveEnabledChanged();
 }
 
+QmlSslCertificate* QmlNode::sslCertificate()
+{
+	if(m_sslCertificate)
+		return m_sslCertificate;
+
+	m_sslCertificate = new QmlSslCertificate(m_node.certificate(), this);
+
+	return m_sslCertificate;
+}
+
 Node QmlNode::node() const
 {
 	return m_node;
@@ -96,7 +112,7 @@ void QmlNode::setNode(const Node &n)
 
 	emit nameChanged();
 	emit hostChanged();
-	emit portChanged();
+	emit portChanged(m_node.port());
 	emit sendEnabledChanged();
 	emit receiveEnabledChanged();
 }

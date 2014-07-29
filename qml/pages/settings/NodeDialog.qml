@@ -22,7 +22,7 @@ import Sailfish.Silica 1.0
 import harbour.haveclip.core 1.0
 
 Dialog {
-    property Node node
+    property Node node: null
     property bool shouldDelete: false
     property bool isOk: false
 
@@ -102,21 +102,71 @@ Dialog {
                 placeholderText: qsTr("Port")
                 text: node.port
                 inputMethodHints: Qt.ImhDigitsOnly
-                validator: IntValidator {
-                    bottom: 1
-                    top: 65535
-                }
+                // FIXME: find out why the validator does not work
+//                validator: IntValidator {
+//                    bottom: 1
+//                    top: 65535
+//                }
             }
 
             Binding {
                 target: node
                 property: "port"
-                value: portField.text
+                value: parseInt(portField.text)
+            }
+
+            SectionHeader {
+                text: qsTr("Identity")
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Common name")
+                value: node.sslCertificate.commonName
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Organization")
+                value: node.sslCertificate.organization
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Organization unit")
+                value: node.sslCertificate.organizationUnit
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Issued on")
+                value: Qt.formatDateTime(node.sslCertificate.issuedOn, "d/M/yyyy")
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Expires on")
+                value: Qt.formatDateTime(node.sslCertificate.expiryDate, "d/M/yyyy")
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Organization")
+                value: node.sslCertificate.organization
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("SHA-1 Fingerprint")
+                value: node.sslCertificate.sha1Digest
+                enabled: false
             }
         }
-    }
-
-    onDone: {
-
     }
 }
