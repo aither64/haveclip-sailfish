@@ -47,7 +47,8 @@ int main(int argc, char *argv[])
 	qmlRegisterType<ConnectionManager>("harbour.haveclip.network", 1, 0, "ConnectionManager");
 	qmlRegisterType<Communicator>("harbour.haveclip.network", 1, 0, "Communicator");
 
-	Settings::create()->init();
+	QScopedPointer<Settings> settings(Settings::create());
+	settings->init();
 
 	ClipboardManager manager;
 	manager.delayedStart(500);

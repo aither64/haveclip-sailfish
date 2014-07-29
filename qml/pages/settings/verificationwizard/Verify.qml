@@ -45,6 +45,11 @@ Dialog {
             id: column
             width: parent.width
             spacing: Theme.paddingLarge
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: Theme.paddingLarge
+            }
 
             DialogHeader {
                 id: header
@@ -55,6 +60,7 @@ Dialog {
                 visible: dialog.introduced
                 width: parent.width
                 anchors.margins: Theme.paddingLarge
+                horizontalAlignment: Text.AlignHCenter
                 text: qsTr(
                           "Please go to "
                           + helpers.verifiedNode().name
@@ -66,13 +72,16 @@ Dialog {
 
         Label {
             id: errorLabel
+            width: parent.width
+            anchors.margins: Theme.paddingLarge
             visible: false
             horizontalAlignment: Text.AlignHCenter
             anchors.centerIn: parent
+            wrapMode: Text.Wrap
         }
 
         Label {
-            visible: dialog.introduced
+            visible: dialog.introduced && !dialog.error
             anchors.centerIn: parent
             font.pixelSize: Theme.fontSizeLarge
             text: qsTr("Security code:") + " " + conman.securityCode
@@ -84,6 +93,9 @@ Dialog {
 
         conman.introductionFinished.connect(function(){
             d.introduced = true
+
+            // refresh node name shown in the label above
+            helpers.verifiedNode()
         })
 
         conman.introductionFailed.connect(function(status){
@@ -93,8 +105,20 @@ Dialog {
         })
 
         conman.verificationFinished.connect(function(status){
-            d.canAccept = true
-            d.accept()
+            switch(status) {
+            case ConnectionManager.Valid:
+                d.canAccept = true
+                d.accept()
+
+            case ConnectionManager.NotValid:
+                break;
+
+            case ConnectionManager.Refused:
+                d.error = true
+                errorLabel.text = qsTr("You have run out of tries. Please repeat the verification process.")
+                errorLabel.visible = true
+                break;
+            }
         })
 
         dialog.introduced = false
