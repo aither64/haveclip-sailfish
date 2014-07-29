@@ -24,6 +24,7 @@ import harbour.haveclip.network 1.0
 Dialog {
     property string host
     property int port
+    property int nodeId: 0
     property bool introduced: false
     property bool error: false
 
@@ -33,16 +34,6 @@ Dialog {
 
     SilicaFlickable {
         anchors.fill: parent
-
-        Timer {
-            id: timer
-            interval: 5000
-            running: false
-            repeat: false
-            onTriggered: {
-                console.log("Timer hit!")
-            }
-        }
 
         BusyIndicator {
             anchors.centerIn: parent
@@ -107,10 +98,12 @@ Dialog {
         })
 
         dialog.introduced = false
-        conman.verifyConnection(host, port)
 
-//        timer.start()
+        if(nodeId > 0)
+            conman.verifyConnection(nodeId)
+        else
+            conman.verifyConnection(host, port)
 
-        console.log("host = " + host, ", port = ", port)
+        console.log("host = " + host, ", port = ", port, ", node id = ", nodeId)
     }
 }

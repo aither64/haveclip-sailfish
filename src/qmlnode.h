@@ -43,6 +43,8 @@ public:
 	Node node() const;
 	void setNode(const Node &n);
 
+	Q_INVOKABLE void update();
+
 signals:
 	void nameChanged();
 	void hostChanged();

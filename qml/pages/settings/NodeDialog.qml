@@ -48,6 +48,19 @@ Dialog {
                     dialog.accept()
                 }
             }
+
+            MenuItem {
+                text: qsTr("New identity verification")
+                onClicked: {
+                    var verify = pageStack.push("verificationwizard/Verify.qml", {
+                        "nodeId": dialog.node.id
+                    })
+
+                    verify.accepted.connect(function() {
+                        node.update()
+                    })
+                }
+            }
         }
 
         Column {

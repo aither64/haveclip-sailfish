@@ -63,12 +63,7 @@ Page {
             MenuItem {
                 text: qsTr("Add node")
                 onClicked: {
-                    var dialog = pageStack.push("verificationwizard/Search.qml")
-
-                    dialog.accepted.connect(function() {
-                        if(dialog.isOk)
-                            nodeModel.add(dialog.addr, dialog.port)
-                    })
+                    pageStack.push("verificationwizard/Search.qml")
                 }
             }
         }

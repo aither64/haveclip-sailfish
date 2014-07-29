@@ -2,6 +2,7 @@
 
 #include <QDebug>
 
+#include "Settings.h"
 #include "qmlsslcertificate.h"
 
 QmlNode::QmlNode(QObject *parent) :
@@ -115,4 +116,16 @@ void QmlNode::setNode(const Node &n)
 	emit portChanged(m_node.port());
 	emit sendEnabledChanged();
 	emit receiveEnabledChanged();
+}
+
+void QmlNode::update()
+{
+	foreach(const Node &n, Settings::get()->nodes())
+	{
+		if(n.id() == m_node.id())
+		{
+			m_sslCertificate->setCertificate(n.certificate());
+			break;
+		}
+	}
 }
