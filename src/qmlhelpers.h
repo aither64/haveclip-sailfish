@@ -22,6 +22,7 @@ public:
 
 signals:
 	void selfSslCertificateChanged();
+	void verificationRequested(QmlNode *node);
 
 private slots:
 	void updateSelfSslCertificate(const QSslCertificate &certificate);

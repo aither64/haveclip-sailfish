@@ -26,4 +26,24 @@ ApplicationWindow
     initialPage: Component { History { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
+
+    function openCodePrompt() {
+        pageStack.push(Qt.resolvedUrl("pages/settings/verificationwizard/Prompt.qml"), {
+            "node": helpers.verifiedNode()
+        })
+    }
+
+    Component.onCompleted: {
+        conman.verificationRequested.connect(function(){
+            if(pageStack.busy) {
+                pageStack.busyChanged.connect(function(){
+                    if(!pageStack.busy)
+                        openCodePrompt()
+                })
+
+            } else {
+                openCodePrompt()
+            }
+        })
+    }
 }

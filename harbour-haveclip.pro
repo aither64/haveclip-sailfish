@@ -63,7 +63,8 @@ OTHER_FILES += \
     qml/pages/settings/Network.qml \
     qml/pages/settings/Security.qml \
     qml/pages/settings/verificationwizard/Search.qml \
-    qml/pages/settings/verificationwizard/Verify.qml
+    qml/pages/settings/verificationwizard/Verify.qml \
+    qml/pages/settings/verificationwizard/Prompt.qml
 
 HEADERS += \
     src/qmlclipboardmanager.h \
