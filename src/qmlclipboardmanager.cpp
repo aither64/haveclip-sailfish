@@ -36,7 +36,12 @@ QString QmlClipboardManager::version()
 
 QString QmlClipboardManager::content()
 {
-    return m_content;
+	return m_content;
+}
+
+void QmlClipboardManager::doSync()
+{
+	m_manager->distributeCurrentClipboard();
 }
 
 void QmlClipboardManager::jumpToItemAt(int index)

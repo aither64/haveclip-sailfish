@@ -40,6 +40,11 @@ CoverBackground {
         enabled: settings.syncEnabled
 
         CoverAction {
+            iconSource: "image://theme/icon-cover-refresh"
+            onTriggered: manager.doSync()
+        }
+
+        CoverAction {
             iconSource: "image://theme/icon-cover-pause"
             onTriggered: settings.syncEnabled = false
         }
@@ -47,6 +52,11 @@ CoverBackground {
 
     CoverActionList {
         enabled: !settings.syncEnabled
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-refresh"
+            onTriggered: manager.doSync()
+        }
 
         CoverAction {
             iconSource: "image://theme/icon-cover-play"

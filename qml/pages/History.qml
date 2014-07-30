@@ -63,6 +63,11 @@ Page {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
             }
+
+            MenuItem {
+                text: qsTr("Synchronize clipboard")
+                onClicked: manager.doSync()
+            }
         }
 
         delegate: ListItem {
