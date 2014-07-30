@@ -103,31 +103,31 @@ Page {
                 value: syncEnabled.checked
             }
 
-//            TextSwitch {
-//                id: sendEnabled
-//                text: qsTr("Enable clipboard sending")
-//                checked: settings.sendEnabled
-//                enabled: syncEnabled.checked
-//            }
+            TextSwitch {
+                id: sendEnabled
+                text: qsTr("Enable clipboard sending")
+                checked: settings.sendEnabled
+                enabled: syncEnabled.checked
+            }
 
-//            Binding {
-//                target: settings
-//                property: "sendEnabled"
-//                value: sendEnabled.checked
-//            }
+            Binding {
+                target: settings
+                property: "sendEnabled"
+                value: sendEnabled.checked
+            }
 
-//            TextSwitch {
-//                id: recvEnabled
-//                text: qsTr("Enable clipboard receiving")
-//                checked: settings.recvEnabled
-//                enabled: syncEnabled.checked
-//            }
+            TextSwitch {
+                id: recvEnabled
+                text: qsTr("Enable clipboard receiving")
+                checked: settings.recvEnabled
+                enabled: syncEnabled.checked
+            }
 
-//            Binding {
-//                target: settings
-//                property: "recvEnabled"
-//                value: recvEnabled.checked
-//            }
+            Binding {
+                target: settings
+                property: "recvEnabled"
+                value: recvEnabled.checked
+            }
         }
     }
 }
