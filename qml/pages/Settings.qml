@@ -48,6 +48,10 @@ Page {
         }
     }
 
+    RemorsePopup {
+        id: remorseResetSettings
+    }
+
     SilicaListView {
         id: listView
         anchors.fill: parent
@@ -66,6 +70,17 @@ Page {
             }
 
             onClicked: pageStack.push(Qt.resolvedUrl("settings/" + page))
+        }
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Reset settings")
+                onClicked: {
+                    remorseResetSettings.execute(qsTr("Resetting settings"), function () {
+                        settings.reset()
+                    }, 10000)
+                }
+            }
         }
 
         VerticalScrollDecorator {}
