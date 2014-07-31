@@ -5,7 +5,7 @@
 
 #include "Node.h"
 
-class QmlSslCertificate;
+class CertificateInfo;
 
 class QmlNode : public QObject
 {
@@ -37,8 +37,8 @@ public:
 	bool isReceiveEnabled() const;
 	void setReceiveEnabled(bool enabled);
 
-	Q_PROPERTY(QmlSslCertificate* sslCertificate READ sslCertificate NOTIFY sslCertificateChanged)
-	QmlSslCertificate* sslCertificate();
+	Q_PROPERTY(CertificateInfo* sslCertificate READ sslCertificate NOTIFY sslCertificateChanged)
+	CertificateInfo* sslCertificate();
 
 	Node node() const;
 	void setNode(const Node &n);
@@ -56,7 +56,7 @@ signals:
 private:
 	Node m_node;
 
-	QmlSslCertificate* m_sslCertificate;
+	CertificateInfo* m_sslCertificate;
 };
 
 #endif // QMLNODE_H

@@ -6,7 +6,7 @@
 #include "Network/Communicator.h"
 
 class QmlNode;
-class QmlSslCertificate;
+class CertificateInfo;
 
 class QmlHelpers : public QObject
 {
@@ -14,8 +14,8 @@ class QmlHelpers : public QObject
 public:
 	explicit QmlHelpers(QObject *parent = 0);
 
-	Q_PROPERTY(QmlSslCertificate* selfSslCertificate READ selfSslCertificate NOTIFY selfSslCertificateChanged)
-	QmlSslCertificate* selfSslCertificate() const;
+	Q_PROPERTY(CertificateInfo* selfSslCertificate READ selfSslCertificate NOTIFY selfSslCertificateChanged)
+	CertificateInfo* selfSslCertificate() const;
 
 	Q_INVOKABLE QmlNode* verifiedNode();
 	Q_INVOKABLE QString communicationStatusToString(Communicator::CommunicationStatus status) const;
@@ -29,7 +29,7 @@ private slots:
 
 private:
 	QmlNode *m_verifiedNode;
-	QmlSslCertificate *m_selfCert;
+	CertificateInfo *m_selfCert;
 
 };
 

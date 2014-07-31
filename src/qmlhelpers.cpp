@@ -3,19 +3,19 @@
 #include "Settings.h"
 #include "ClipboardManager.h"
 #include "qmlnode.h"
-#include "qmlsslcertificate.h"
+#include "CertificateInfo.h"
 
 QmlHelpers::QmlHelpers(QObject *parent) :
 	QObject(parent),
 	m_verifiedNode(0),
 	m_selfCert(0)
 {
-	m_selfCert = new QmlSslCertificate(Settings::get()->certificate(), this);
+	m_selfCert = new CertificateInfo(Settings::get()->certificate(), this);
 
 	connect(Settings::get(), SIGNAL(certificateChanged(QSslCertificate)), this, SLOT(updateSelfSslCertificate(QSslCertificate)));
 }
 
-QmlSslCertificate* QmlHelpers::selfSslCertificate() const
+CertificateInfo* QmlHelpers::selfSslCertificate() const
 {
 	return m_selfCert;
 }

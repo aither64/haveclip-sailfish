@@ -45,7 +45,7 @@ SOURCES += \
     src/nodediscoverymodel.cpp \
     src/qmlnode.cpp \
     src/qmlhelpers.cpp \
-    src/qmlsslcertificate.cpp
+    haveclip-core/src/CertificateInfo.cpp
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -98,4 +98,4 @@ HEADERS += \
     src/nodediscoverymodel.h \
     src/qmlnode.h \
     src/qmlhelpers.h \
-    src/qmlsslcertificate.h
+    haveclip-core/src/CertificateInfo.h

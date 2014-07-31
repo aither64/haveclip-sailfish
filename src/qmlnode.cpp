@@ -3,7 +3,7 @@
 #include <QDebug>
 
 #include "Settings.h"
-#include "qmlsslcertificate.h"
+#include "CertificateInfo.h"
 
 QmlNode::QmlNode(QObject *parent) :
 	QObject(parent),
@@ -92,12 +92,12 @@ void QmlNode::setReceiveEnabled(bool enabled)
 	emit receiveEnabledChanged();
 }
 
-QmlSslCertificate* QmlNode::sslCertificate()
+CertificateInfo* QmlNode::sslCertificate()
 {
 	if(m_sslCertificate)
 		return m_sslCertificate;
 
-	m_sslCertificate = new QmlSslCertificate(m_node.certificate(), this);
+	m_sslCertificate = new CertificateInfo(m_node.certificate(), this);
 
 	return m_sslCertificate;
 }
@@ -124,6 +124,7 @@ void QmlNode::update()
 	{
 		if(n.id() == m_node.id())
 		{
+			m_node.setCertificate(n.certificate());
 			m_sslCertificate->setCertificate(n.certificate());
 			break;
 		}
