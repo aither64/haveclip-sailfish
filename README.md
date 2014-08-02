@@ -1,3 +1,5 @@
+![HaveClip](gfx/logo-text-512.png)
+
 HaveClip - clipboard synchronization tool
 =========================================
 
