@@ -1,2 +1,25 @@
-See haveclip-core/README.md
+HaveClip - clipboard synchronization tool
+=========================================
 
+HaveClip is a peer-to-peer clipboard synchronization tool.
+Ctrl+C on one computer, Ctrl+V on another.
+
+Clipboard is instantly synchronized across all your devices. It can handle all
+forms of text, images and even application-specific data.
+
+HaveClip is multiplatform. Copy something in one OS, paste in another.
+Supports Windows, Linux, Mac OS X and Sailfish OS.
+
+Installation
+------------
+HaveClip is available in Harbour.
+
+Build
+-----
+Install Sailfish OS SDK and build it with it.
+
+Known issues
+------------
+In order to sync clipboard from Sailfish to PC, one must bring HaveClip to foreground
+after copying text, or else HaveClip will not notice it. Sync from PC to Sailfish works
+fine.
