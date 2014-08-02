@@ -25,3 +25,6 @@ Known issues
 In order to sync clipboard from Sailfish to PC, one must bring HaveClip to foreground
 after copying text, or else HaveClip will not notice it. Sync from PC to Sailfish works
 fine.
+
+For Jolla to be auto-discovered by other devices, it must be active, meaning the screen
+must be turned on.
