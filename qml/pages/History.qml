@@ -22,6 +22,7 @@ import Sailfish.Silica 1.0
 
 Page {
     id: page
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     RemorsePopup {
         id: remorseHistory
@@ -61,6 +62,11 @@ Page {
             MenuItem {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
+            }
+
+            MenuItem {
+                text: qsTr("Synchronize clipboard")
+                onClicked: manager.doSync()
             }
         }
 

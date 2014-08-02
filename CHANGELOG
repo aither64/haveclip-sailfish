@@ -1,0 +1,13 @@
+* Sat Aug 02 2014 - version 0.13.0
+- Settings:
+  - Connection split to Network and Security
+  - Configurable encryption mode
+  - New node pairing wizard
+  - Node auto-discovery
+  - Global clipboard direction settings and per node
+  - Clipboard size limiting
+  - Accepts only MIME types text/*
+  - Reset
+- On-demand clipboard sync with pulley and cover action
+- Allow landscape orientation
+- New icon

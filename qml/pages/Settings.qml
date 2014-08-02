@@ -22,6 +22,7 @@ import Sailfish.Silica 1.0
 
 Page {
     id: settingsPage
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     ListModel {
         id: pagesModel
@@ -37,9 +38,18 @@ Page {
         }
 
         ListElement {
-            page: "Connection.qml"
-            title: "Connection"
+            page: "Network.qml"
+            title: "Network"
         }
+
+        ListElement {
+            page: "Security.qml"
+            title: "Security"
+        }
+    }
+
+    RemorsePopup {
+        id: remorseResetSettings
     }
 
     SilicaListView {
@@ -60,6 +70,17 @@ Page {
             }
 
             onClicked: pageStack.push(Qt.resolvedUrl("settings/" + page))
+        }
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Reset settings")
+                onClicked: {
+                    remorseResetSettings.execute(qsTr("Resetting settings"), function () {
+                        settings.reset()
+                    }, 10000)
+                }
+            }
         }
 
         VerticalScrollDecorator {}

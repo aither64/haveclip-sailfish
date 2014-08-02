@@ -20,37 +20,54 @@
 #include <QtQuick>
 
 #include <sailfishapp.h>
+#include "../haveclip-core/src/Settings.h"
 #include "../haveclip-core/src/ClipboardManager.h"
 #include "qmlclipboardmanager.h"
-#include "qmlsettings.h"
 #include "nodemodel.h"
+#include "nodediscoverymodel.h"
+#include "qmlnode.h"
+#include "CertificateInfo.h"
+#include "qmlhelpers.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setOrganizationName("HaveFun.cz");
-    QCoreApplication::setOrganizationDomain("havefun.cz");
-    QCoreApplication::setApplicationName("HaveClip");
+	QCoreApplication::setOrganizationName("HaveFun.cz");
+	QCoreApplication::setOrganizationDomain("havefun.cz");
+	QCoreApplication::setApplicationName("HaveClip");
 
-    QGuiApplication *app = SailfishApp::application(argc, argv);
+	QGuiApplication *app = SailfishApp::application(argc, argv);
 
+	qRegisterMetaType<Communicator::CommunicationStatus>("Communicator::CommunicationStatus");
+	qRegisterMetaType<ConnectionManager::CodeValidity>("ConnectionManager::CodeValidity");
+
+	qmlRegisterType<QmlNode>("harbour.haveclip.core", 1, 0, "Node");
+	qmlRegisterType<CertificateInfo>("harbour.haveclip.core", 1, 0, "SslCertificate");
 	qmlRegisterType<NodeModel>("harbour.haveclip.models", 1, 0, "NodeModel");
+	qmlRegisterType<NodeDiscoveryModel>("harbour.haveclip.models", 1, 0, "NodeDiscoveryModel");
+	qmlRegisterType<ConnectionManager>("harbour.haveclip.network", 1, 0, "ConnectionManager");
+	qmlRegisterType<Communicator>("harbour.haveclip.network", 1, 0, "Communicator");
 
-    ClipboardManager manager;
+	QScopedPointer<Settings> settings(Settings::create());
+	settings->init();
+
+	ClipboardManager manager;
 	manager.delayedStart(500);
 
-    QmlSettings settings;
-    QmlClipboardManager qmlManager;
+	QmlClipboardManager qmlManager;
+	QmlHelpers helpers;
 
-    QQuickView *view = SailfishApp::createView();
-    QQmlContext *context = view->engine()->rootContext();
+	QQuickView *view = SailfishApp::createView();
+	QQmlContext *context = view->engine()->rootContext();
 
-    context->setContextProperty("settings", &settings);
-    context->setContextProperty("manager", &qmlManager);
+	context->setContextProperty("settings", Settings::get());
+	context->setContextProperty("manager", &qmlManager);
 	context->setContextProperty("historyModel", manager.history());
+	context->setContextProperty("conman", manager.connectionManager());
+	context->setContextProperty("helpers", &helpers);
+
 
 	view->setSource(SailfishApp::pathTo("qml/harbour-haveclip.qml"));
-    view->show();
+	view->show();
 
-    return app->exec();
+	return app->exec();
 }
-

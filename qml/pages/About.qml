@@ -22,6 +22,7 @@ import Sailfish.Silica 1.0
 
 Page {
     id: page
+//    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     function styledRichText(str) {
         return "<html>" +

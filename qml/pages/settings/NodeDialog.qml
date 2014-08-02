@@ -19,35 +19,46 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import harbour.haveclip.core 1.0
 
 Dialog {
-    property string addr
-    property string port
-    property string headerText
-    property bool canDelete: false
+    property Node node: null
     property bool shouldDelete: false
     property bool isOk: false
-    property int index
 
     id: dialog
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
+    canAccept: !nameField.errorHighlight && !addrField.errorHighlight && !portField.errorHighlight
 
     SilicaFlickable {
         anchors.fill: parent
+        contentHeight: column.height
 
-        Component.onCompleted: {
-            if(!canDelete)
-                menu.destroy()
+        VerticalScrollDecorator {
+            flickable: parent
         }
 
         PullDownMenu {
             id: menu
-            visible: canDelete
 
             MenuItem {
                 text: qsTr("Delete")
                 onClicked: {
                     shouldDelete = true
                     dialog.accept()
+                }
+            }
+
+            MenuItem {
+                text: qsTr("New identity verification")
+                onClicked: {
+                    var verify = pageStack.push("verificationwizard/Verify.qml", {
+                        "nodeId": dialog.node.id
+                    })
+
+                    verify.accepted.connect(function() {
+                        node.update()
+                    })
                 }
             }
         }
@@ -57,7 +68,28 @@ Dialog {
             width: dialog.width
 
             DialogHeader {
-                acceptText: headerText
+                acceptText: qsTr("Edit node")
+            }
+
+            SectionHeader {
+                text: qsTr("Description")
+            }
+
+            TextField {
+                id: nameField
+                width: parent.width
+                label: qsTr("Name")
+                placeholderText: qsTr("Name")
+                text: node.name
+                validator: RegExpValidator {
+                    regExp: /.+/
+                }
+            }
+
+            Binding {
+                target: node
+                property: "name"
+                value: nameField.text
             }
 
             TextField {
@@ -65,10 +97,16 @@ Dialog {
                 width: parent.width
                 label: qsTr("IP address/hostname")
                 placeholderText: qsTr("IP address/hostname")
-                text: addr
+                text: node.host
                 validator: RegExpValidator {
                     regExp: /^[^\s]+$/
                 }
+            }
+
+            Binding {
+                target: node
+                property: "host"
+                value: addrField.text
             }
 
             TextField {
@@ -76,23 +114,101 @@ Dialog {
                 width: parent.width
                 label: qsTr("Port")
                 placeholderText: qsTr("Port")
-                text: port
+                text: node.port
                 inputMethodHints: Qt.ImhDigitsOnly
-                validator: IntValidator {
-                    bottom: 1
-                    top: 65535
-                }
+                // FIXME: find out why the validator does not work
+//                validator: IntValidator {
+//                    bottom: 1
+//                    top: 65535
+//                }
             }
-        }
 
-        contentHeight: column.height
-    }
+            Binding {
+                target: node
+                property: "port"
+                value: parseInt(portField.text)
+            }
 
-    onDone: {
-        if(result == DialogResult.Accepted) {
-            addr = addrField.text
-            port = portField.text
-            isOk = !addrField.errorHighlight && !portField.errorHighlight
+            SectionHeader {
+                text: qsTr("Synchronization")
+            }
+
+            TextSwitch {
+                id: sendEnabled
+                text: qsTr("Send the clipboard to this node")
+                checked: node.sendEnabled
+            }
+
+            Binding {
+                target: node
+                property: "sendEnabled"
+                value: sendEnabled.checked
+            }
+
+            TextSwitch {
+                id: recvEnabled
+                text: qsTr("Receive the clipboard from this node")
+                checked: node.receiveEnabled
+            }
+
+            Binding {
+                target: node
+                property: "receiveEnabled"
+                value: recvEnabled.checked
+            }
+
+            SectionHeader {
+                text: qsTr("Identity")
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Common name")
+                value: node.sslCertificate.commonName
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Organization")
+                value: node.sslCertificate.organization
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Organization unit")
+                value: node.sslCertificate.organizationUnit
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Issued on")
+                value: Qt.formatDateTime(node.sslCertificate.issuedOn, "d/M/yyyy")
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Expires on")
+                value: Qt.formatDateTime(node.sslCertificate.expiryDate, "d/M/yyyy")
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("Organization")
+                value: node.sslCertificate.organization
+                enabled: false
+            }
+
+            ValueButton {
+                width: parent.width
+                label: qsTr("SHA-1 Fingerprint")
+                value: node.sslCertificate.sha1Digest
+                enabled: false
+            }
         }
     }
 }

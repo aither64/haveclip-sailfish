@@ -25,30 +25,32 @@
 
 class QmlClipboardManager : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit QmlClipboardManager(QObject *parent = 0);
+	explicit QmlClipboardManager(QObject *parent = 0);
 
 	Q_PROPERTY(QString version READ version)
 	QString version();
 
 	Q_PROPERTY(QString content READ content NOTIFY contentChanged)
-    QString content();
+	QString content();
+
+	Q_INVOKABLE void doSync();
 
 signals:
-    void contentChanged(QString content);
+	void contentChanged(QString content);
 
 public slots:
 	void jumpToItemAt(int index);
 
 private:
-    ClipboardManager *m_manager;
-    History *m_history;
-    QString m_content;
+	ClipboardManager *m_manager;
+	History *m_history;
+	QString m_content;
 
 private slots:
-    void historyChange();
+	void historyChange();
 
 };
 
