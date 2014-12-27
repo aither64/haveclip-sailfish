@@ -26,6 +26,7 @@ QmlClipboardManager::QmlClipboardManager(QObject *parent) :
     m_manager = ClipboardManager::instance();
     m_history = m_manager->history();
 
+	connect(m_manager, SIGNAL(initialized()), this, SLOT(managerInitialize()));
     connect(m_history, SIGNAL(historyChanged()), this, SLOT(historyChange()));
 }
 
@@ -49,6 +50,17 @@ void QmlClipboardManager::jumpToItemAt(int index)
 	m_manager->jumpToItemAt(m_history->count() - index - 1);
 
 	m_content = m_history->currentItem()->toPlainText();
+	emit contentChanged(m_content);
+}
+
+void QmlClipboardManager::managerInitialize()
+{
+	ClipboardItem *it = m_history->currentItem();
+
+	if (!it)
+		return;
+
+	m_content = it->toPlainText();
 	emit contentChanged(m_content);
 }
 
