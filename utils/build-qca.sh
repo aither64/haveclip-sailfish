@@ -6,7 +6,7 @@
 # and copy libraries to lib/.
 #
 # Editable variables
-SDK_DIR=~/apps/SailfishOS
+SDK_DIR=~/SailfishOS
 QCA_PLUGINS="ossl"
 
 SDK_PORT=2222
