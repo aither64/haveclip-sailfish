@@ -20,7 +20,7 @@ HaveClip is available in Harbour.
 
 Build
 -----
-Install Sailfish OS SDK and build it with it.
+See BUILD.md.
 
 Known issues
 ------------
