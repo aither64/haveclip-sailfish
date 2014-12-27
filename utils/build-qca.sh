@@ -15,6 +15,16 @@ SDK_IDENTITY="$SDK_DIR/vmshare/ssh/private_keys/engine/mersdk"
 QCA_PKG_URL="https://github.com/nemomobile-packages/qca.git"
 # ------------------
 
+function usage {
+	echo "Usage: build-qca.sh arm | i486"
+	echo "Run it from haveclip-mobile top-level directory."
+	echo
+	echo "This script requires:"
+	echo "  1) Linux or OS X"
+	echo "  2) Running MerSDK virtual machine"
+	echo "  3) Internet connection"
+}
+
 function title {
 	echo "** $*"
 }
@@ -44,7 +54,7 @@ case "$1" in
 		;;
 	*)
 		echo "Invalid platform '$1'"
-		echo "Usage: build-qca.sh arm | i486"
+		usage
 		exit 1
 esac
 
