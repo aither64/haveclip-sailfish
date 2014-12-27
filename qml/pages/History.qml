@@ -24,6 +24,20 @@ Page {
     id: page
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
+    Timer {
+        id: initTimer
+        repeat: false
+        interval: 300
+
+        onTriggered: pageStack.push(Qt.resolvedUrl("settings/security/CertificateGenerator.qml"))
+    }
+
+    Component.onCompleted: {
+        if (settings.firstStart) {
+            initTimer.start()
+        }
+    }
+
     RemorsePopup {
         id: remorseHistory
     }
