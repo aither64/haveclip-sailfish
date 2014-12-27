@@ -21,10 +21,10 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
-    Label {
-        text: "HaveClip"
+    Image {
         anchors.horizontalCenter: parent.horizontalCenter
-        y: parent.height / 4
+        source: "/usr/share/icons/hicolor/86x86/apps/harbour-haveclip.png"
+        y: parent.height / 10
     }
 
     Label {
