@@ -47,6 +47,9 @@ void QmlClipboardManager::doSync()
 void QmlClipboardManager::jumpToItemAt(int index)
 {
 	m_manager->jumpToItemAt(m_history->count() - index - 1);
+
+	m_content = m_history->currentItem()->toPlainText();
+	emit contentChanged(m_content);
 }
 
 void QmlClipboardManager::historyChange()
