@@ -53,7 +53,12 @@ SOURCES += \
     src/qmlnode.cpp \
     src/qmlhelpers.cpp \
     haveclip-core/src/CertificateInfo.cpp \
-    haveclip-core/src/CertificateGenerator.cpp
+    haveclip-core/src/CertificateGenerator.cpp \
+    haveclip-core/src/Cli.cpp \
+    haveclip-core/src/RemoteClient.cpp \
+    haveclip-core/src/RemoteControl.cpp \
+    haveclip-core/src/RemoteControls/RemoteBase.cpp \
+    haveclip-core/src/RemoteControls/Sync.cpp
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -108,4 +113,9 @@ HEADERS += \
     src/qmlnode.h \
     src/qmlhelpers.h \
     haveclip-core/src/CertificateInfo.h \
-    haveclip-core/src/CertificateGenerator.h
+    haveclip-core/src/CertificateGenerator.h \
+    haveclip-core/src/Cli.h \
+    haveclip-core/src/RemoteClient.h \
+    haveclip-core/src/RemoteControl.h \
+    haveclip-core/src/RemoteControls/RemoteBase.h \
+    haveclip-core/src/RemoteControls/Sync.h
