@@ -1,3 +1,8 @@
+* Tue Jan 06 2015 - version 0.14.0
+- Built-in certificate generator
+- Fixes in clipboard history reorganization
+- Icon in cover page
+
 * Sat Aug 02 2014 - version 0.13.0
 - Settings:
   - Connection split to Network and Security
