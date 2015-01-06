@@ -19,8 +19,7 @@ PkgConfigBR:
 - libssl
 Requires:
 - sailfishsilica-qt5 >= 0.10.9
-- libssl
-- libcrypto
+- libssl.so.10
 Files:
 - /usr/share/harbour-haveclip
 - /usr/share/icons/hicolor/86x86/apps

@@ -6,7 +6,8 @@
 Name:       harbour-haveclip
 
 # >> macros
-%define __requires_exclude ^libc|libssl|libcrypto.*$
+%define __requires_exclude ^libqca-qt5.*$
+%define __provides_exclude_from ^%{_datadir}/.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -22,7 +23,7 @@ URL:        http://www.havefun.cz/projects/haveclip
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-haveclip.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
-Requires:   openssl-libs
+Requires:   libssl.so.10
 BuildRequires:  pkgconfig(sailfishapp) >= 0.0.10
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
