@@ -13,6 +13,13 @@ DEFINES += MER_SAILFISH
 
 INCLUDEPATH += ./haveclip-core/src
 
+LIBS += -lqca-qt5
+
+qca_lib.path = /usr/share/harbour-haveclip/lib
+qca_lib.files = lib/*
+
+INSTALLS += qca_lib
+
 SOURCES += \
     src/qmlclipboardmanager.cpp \
     src/harbour-haveclip.cpp \
@@ -45,7 +52,13 @@ SOURCES += \
     src/nodediscoverymodel.cpp \
     src/qmlnode.cpp \
     src/qmlhelpers.cpp \
-    haveclip-core/src/CertificateInfo.cpp
+    haveclip-core/src/CertificateInfo.cpp \
+    haveclip-core/src/CertificateGenerator.cpp \
+    haveclip-core/src/Cli.cpp \
+    haveclip-core/src/RemoteClient.cpp \
+    haveclip-core/src/RemoteControl.cpp \
+    haveclip-core/src/RemoteControls/RemoteBase.cpp \
+    haveclip-core/src/RemoteControls/Sync.cpp
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -64,7 +77,8 @@ OTHER_FILES += \
     qml/pages/settings/Security.qml \
     qml/pages/settings/verificationwizard/Search.qml \
     qml/pages/settings/verificationwizard/Verify.qml \
-    qml/pages/settings/verificationwizard/Prompt.qml
+    qml/pages/settings/verificationwizard/Prompt.qml \
+    qml/pages/settings/security/CertificateGenerator.qml
 
 HEADERS += \
     src/qmlclipboardmanager.h \
@@ -98,4 +112,10 @@ HEADERS += \
     src/nodediscoverymodel.h \
     src/qmlnode.h \
     src/qmlhelpers.h \
-    haveclip-core/src/CertificateInfo.h
+    haveclip-core/src/CertificateInfo.h \
+    haveclip-core/src/CertificateGenerator.h \
+    haveclip-core/src/Cli.h \
+    haveclip-core/src/RemoteClient.h \
+    haveclip-core/src/RemoteControl.h \
+    haveclip-core/src/RemoteControls/RemoteBase.h \
+    haveclip-core/src/RemoteControls/Sync.h

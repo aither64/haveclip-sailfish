@@ -50,6 +50,7 @@ private:
 	QString m_content;
 
 private slots:
+	void managerInitialize();
 	void historyChange();
 
 };

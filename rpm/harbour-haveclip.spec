@@ -6,6 +6,8 @@
 Name:       harbour-haveclip
 
 # >> macros
+%define __requires_exclude ^libqca-qt5.*$
+%define __provides_exclude_from ^%{_datadir}/.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -13,7 +15,7 @@ Name:       harbour-haveclip
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Clipboard synchronization tool
-Version:    0.13.0
+Version:    0.14.0
 Release:    1
 Group:      Qt/Qt
 License:    GPL
@@ -21,10 +23,12 @@ URL:        http://www.havefun.cz/projects/haveclip
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-haveclip.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   libssl.so.10
 BuildRequires:  pkgconfig(sailfishapp) >= 0.0.10
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(libssl)
 BuildRequires:  desktop-file-utils
 
 %description

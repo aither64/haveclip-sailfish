@@ -33,6 +33,17 @@ Page {
             id: column
             width: parent.width
 
+            PullDownMenu {
+                id: pullDownMenu
+
+                MenuItem {
+                    text: qsTr("Generate new certificate")
+                    onClicked: {
+                        pageStack.push("security/CertificateGenerator.qml")
+                    }
+                }
+            }
+
             PageHeader {
                 title: qsTr("Security")
             }

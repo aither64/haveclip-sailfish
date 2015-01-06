@@ -22,6 +22,8 @@
 #include <sailfishapp.h>
 #include "../haveclip-core/src/Settings.h"
 #include "../haveclip-core/src/ClipboardManager.h"
+#include "../haveclip-core/src/CertificateGenerator.h"
+#include "../haveclip-core/src/Cli.h"
 #include "qmlclipboardmanager.h"
 #include "nodemodel.h"
 #include "nodediscoverymodel.h"
@@ -37,11 +39,26 @@ int main(int argc, char *argv[])
 
 	QGuiApplication *app = SailfishApp::application(argc, argv);
 
+    QCoreApplication::addLibraryPath("/usr/share/harbour-haveclip/lib");
+
+	if (Cli::remoteConnect())
+	{
+		if (argc > 1)
+			return Cli::exec();
+
+		return 0;
+
+	} else if (argc > 1) {
+		// Has arguments but GUI isn't running.
+		return 1;
+	}
+
 	qRegisterMetaType<Communicator::CommunicationStatus>("Communicator::CommunicationStatus");
 	qRegisterMetaType<ConnectionManager::CodeValidity>("ConnectionManager::CodeValidity");
 
 	qmlRegisterType<QmlNode>("harbour.haveclip.core", 1, 0, "Node");
 	qmlRegisterType<CertificateInfo>("harbour.haveclip.core", 1, 0, "SslCertificate");
+    qmlRegisterType<CertificateGenerator>("harbour.haveclip.core", 1, 0, "CertificateGenerator");
 	qmlRegisterType<NodeModel>("harbour.haveclip.models", 1, 0, "NodeModel");
 	qmlRegisterType<NodeDiscoveryModel>("harbour.haveclip.models", 1, 0, "NodeDiscoveryModel");
 	qmlRegisterType<ConnectionManager>("harbour.haveclip.network", 1, 0, "ConnectionManager");
@@ -63,8 +80,7 @@ int main(int argc, char *argv[])
 	context->setContextProperty("manager", &qmlManager);
 	context->setContextProperty("historyModel", manager.history());
 	context->setContextProperty("conman", manager.connectionManager());
-	context->setContextProperty("helpers", &helpers);
-
+    context->setContextProperty("helpers", &helpers);
 
 	view->setSource(SailfishApp::pathTo("qml/harbour-haveclip.qml"));
 	view->show();
