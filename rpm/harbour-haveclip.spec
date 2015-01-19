@@ -23,12 +23,10 @@ URL:        http://www.havefun.cz/projects/haveclip
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-haveclip.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
-Requires:   libssl.so.10
 BuildRequires:  pkgconfig(sailfishapp) >= 0.0.10
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  pkgconfig(libssl)
 BuildRequires:  desktop-file-utils
 
 %description

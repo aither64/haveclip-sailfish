@@ -16,10 +16,8 @@ PkgConfigBR:
 - Qt5Core
 - Qt5Qml
 - Qt5Quick
-- libssl
 Requires:
 - sailfishsilica-qt5 >= 0.10.9
-- libssl.so.10
 Files:
 - /usr/share/harbour-haveclip
 - /usr/share/icons/hicolor/86x86/apps
