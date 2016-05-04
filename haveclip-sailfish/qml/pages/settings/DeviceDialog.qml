@@ -68,7 +68,7 @@ Dialog {
             width: dialog.width
 
             DialogHeader {
-                acceptText: qsTr("Edit node")
+                acceptText: qsTr("Edit device")
             }
 
             SectionHeader {
@@ -135,7 +135,7 @@ Dialog {
 
             TextSwitch {
                 id: sendEnabled
-                text: qsTr("Send the clipboard to this node")
+                text: qsTr("Send the clipboard to this device")
                 checked: node.sendEnabled
             }
 
@@ -147,7 +147,7 @@ Dialog {
 
             TextSwitch {
                 id: recvEnabled
-                text: qsTr("Receive the clipboard from this node")
+                text: qsTr("Receive the clipboard from this device")
                 checked: node.receiveEnabled
             }
 

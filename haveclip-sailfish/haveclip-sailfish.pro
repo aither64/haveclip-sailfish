@@ -21,8 +21,6 @@ SOURCES += \
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
     qml/pages/Settings.qml \
-    qml/pages/settings/Pool.qml \
-    qml/pages/settings/NodeDialog.qml \
     qml/pages/settings/Clipboard.qml \
     qml/harbour-haveclip.qml \
     rpm/harbour-haveclip.spec \
@@ -58,3 +56,7 @@ else:unix: PRE_TARGETDEPS += $$OUT_PWD/../haveclip-core/libhaveclipcore.a
 unix {
 	PKGCONFIG += openssl
 }
+
+DISTFILES += \
+    qml/pages/settings/Devices.qml \
+    qml/pages/settings/DeviceDialog.qml

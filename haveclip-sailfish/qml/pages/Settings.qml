@@ -33,8 +33,8 @@ Page {
         }
 
         ListElement {
-            page: "Pool.qml"
-            title: "Pool"
+            page: "Devices.qml"
+            title: "Devices"
         }
 
         ListElement {

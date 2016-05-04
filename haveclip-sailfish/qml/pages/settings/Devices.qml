@@ -38,13 +38,13 @@ Page {
         model: nodeModel
         header: PageHeader {
             id: pageHeader
-            title: qsTr("Pool")
+            title: qsTr("Devices")
         }
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("Pool is empty")
-            hintText: qsTr("Pull down to add nodes")
+            text: qsTr("The device list is empty")
+            hintText: qsTr("Pull down to add a device")
         }
 
         PullDownMenu {
@@ -54,14 +54,14 @@ Page {
                 text: qsTr("Delete all")
                 onClicked: {
                     var model = nodeModel
-                    remorseDelete.execute(qsTr("Deleting all nodes"), function() {
+                    remorseDelete.execute(qsTr("Deleting all devices"), function() {
                         model.deleteAll()
                     })
                 }
             }
 
             MenuItem {
-                text: qsTr("Add node")
+                text: qsTr("Add device")
                 onClicked: {
                     pageStack.push("verificationwizard/Search.qml")
                 }
@@ -91,7 +91,7 @@ Page {
                         onClicked: {
                             var node_id = id
                             var model = nodeModel
-                            remorseItem.execute(listItem, qsTr("Deleting node"), function() {
+                            remorseItem.execute(listItem, qsTr("Deleting device"), function() {
                                 model.removeId(node_id)
                             })
                         }
@@ -104,7 +104,7 @@ Page {
             }
 
             onClicked: {
-                var dialog = pageStack.push("NodeDialog.qml", {
+                var dialog = pageStack.push("DeviceDialog.qml", {
                     "node": nodeModel.nodeAt(index),
                 })
 
