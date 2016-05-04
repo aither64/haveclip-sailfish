@@ -18,10 +18,6 @@ Installation
 ------------
 HaveClip is available in Harbour.
 
-Build
------
-See BUILD.md.
-
 Known issues
 ------------
 In order to sync clipboard from Sailfish to PC, one must bring HaveClip to foreground
