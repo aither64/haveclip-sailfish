@@ -1,6 +1,6 @@
 #include "nodemodel.h"
 #include "../haveclip-core/src/Settings.h"
-#include "qmlnode.h"
+#include "../haveclip-core/src/Helpers/qmlnode.h"
 
 NodeModel::NodeModel(QObject *parent) :
 	QAbstractListModel(parent),

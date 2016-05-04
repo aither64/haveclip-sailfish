@@ -24,12 +24,12 @@
 #include "../haveclip-core/src/ClipboardManager.h"
 #include "../haveclip-core/src/CertificateGenerator.h"
 #include "../haveclip-core/src/Cli.h"
-#include "qmlclipboardmanager.h"
+#include "../haveclip-core/src/Helpers/qmlclipboardmanager.h"
 #include "nodemodel.h"
 #include "nodediscoverymodel.h"
-#include "qmlnode.h"
+#include "../haveclip-core/src/Helpers/qmlnode.h"
 #include "CertificateInfo.h"
-#include "qmlhelpers.h"
+#include "../haveclip-core/src/Helpers/qmlhelpers.h"
 
 int main(int argc, char *argv[])
 {

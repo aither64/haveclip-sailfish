@@ -2,7 +2,7 @@
 
 #include "../haveclip-core/src/ClipboardManager.h"
 #include "../haveclip-core/src/Network/AutoDiscovery.h"
-#include "qmlnode.h"
+#include "../haveclip-core/src/Helpers/qmlnode.h"
 
 NodeDiscoveryModel::NodeDiscoveryModel(QObject *parent) :
 	QAbstractListModel(parent),

@@ -14,12 +14,9 @@ DEFINES += MER_SAILFISH
 INCLUDEPATH += ../haveclip-core/src
 
 SOURCES += \
-    src/qmlclipboardmanager.cpp \
     src/harbour-haveclip.cpp \
     src/nodemodel.cpp \
-    src/nodediscoverymodel.cpp \
-    src/qmlnode.cpp \
-	src/qmlhelpers.cpp
+    src/nodediscoverymodel.cpp
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -42,11 +39,8 @@ OTHER_FILES += \
     qml/pages/settings/security/CertificateGenerator.qml
 
 HEADERS += \
-    src/qmlclipboardmanager.h \
     src/nodemodel.h \
-    src/nodediscoverymodel.h \
-    src/qmlnode.h \
-	src/qmlhelpers.h
+    src/nodediscoverymodel.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../haveclip-core/release/ -lhaveclipcore
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../haveclip-core/debug/ -lhaveclipcore
