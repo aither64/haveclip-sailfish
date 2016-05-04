@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 SUBDIRS = haveclip-core \
-        harbour-haveclip
+        haveclip-sailfish
 
-harbour-haveclip.depends = haveclip-core
+haveclip-sailfish.depends = haveclip-core
 
 DEFINES += MER_SAILFISH

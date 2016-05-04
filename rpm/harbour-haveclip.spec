@@ -13,7 +13,7 @@ Name:       harbour-haveclip
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Clipboard synchronization tool
-Version:    0.14.0
+Version:    0.15.0
 Release:    1
 Group:      Qt/Qt
 License:    GPL
