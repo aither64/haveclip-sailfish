@@ -6,8 +6,6 @@
 Name:       harbour-haveclip
 
 # >> macros
-%define __requires_exclude ^libqca-qt5.*$
-%define __provides_exclude_from ^%{_datadir}/.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}

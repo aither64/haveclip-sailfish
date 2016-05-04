@@ -36,7 +36,7 @@ Dialog {
     CertificateGenerator {
         id: generator
 
-        onErrorOccured: {
+        onErrorOccurred: {
             errorLabel.text = msg
             dialog.errorOccured = true
         }
