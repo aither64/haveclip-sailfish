@@ -59,7 +59,6 @@ Page {
 
                 menu: ContextMenu {
                     MenuItem { text: "None" }
-                    MenuItem { text: "SSL" }
                     MenuItem { text: "TLS" }
                 }
 
