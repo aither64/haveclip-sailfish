@@ -1,6 +1,6 @@
 Name: harbour-haveclip
 Summary: Clipboard synchronization tool
-Version: 0.14.0
+Version: 0.15.0
 Release: 1
 Group: Qt/Qt
 URL: http://www.havefun.cz/projects/haveclip
@@ -21,10 +21,16 @@ Requires:
 Files:
 - /usr/share/harbour-haveclip
 - /usr/share/icons/hicolor/86x86/apps
+- /usr/share/icons/hicolor/108x108/apps
+- /usr/share/icons/hicolor/128x128/apps
+- /usr/share/icons/hicolor/256x256/apps
 - /usr/share/applications
 - /usr/share/harbour-haveclip
 - /usr/bin
 - '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- '%{_datadir}/icons/hicolor/108x108/apps/%{name}.png'
+- '%{_datadir}/icons/hicolor/128x128/apps/%{name}.png'
+- '%{_datadir}/icons/hicolor/256x256/apps/%{name}.png'
 - '%{_datadir}/applications/%{name}.desktop'
 - '%{_datadir}/%{name}/qml'
 - '%{_bindir}'

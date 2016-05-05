@@ -6,8 +6,6 @@
 Name:       harbour-haveclip
 
 # >> macros
-%define __requires_exclude ^libqca-qt5.*$
-%define __provides_exclude_from ^%{_datadir}/.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -15,7 +13,7 @@ Name:       harbour-haveclip
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Clipboard synchronization tool
-Version:    0.14.0
+Version:    0.15.0
 Release:    1
 Group:      Qt/Qt
 License:    GPL
@@ -66,10 +64,16 @@ desktop-file-install --delete-original       \
 %defattr(-,root,root,-)
 /usr/share/harbour-haveclip
 /usr/share/icons/hicolor/86x86/apps
+/usr/share/icons/hicolor/108x108/apps
+/usr/share/icons/hicolor/128x128/apps
+/usr/share/icons/hicolor/256x256/apps
 /usr/share/applications
 /usr/share/harbour-haveclip
 /usr/bin
 %{_datadir}/icons/hicolor/86x86/apps/%{name}.png
+%{_datadir}/icons/hicolor/108x108/apps/%{name}.png
+%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}/qml
 %{_bindir}

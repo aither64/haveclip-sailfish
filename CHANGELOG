@@ -1,3 +1,10 @@
+* Thu May 04 2016 - version 0.15.0
+- Support for Jolla Tablet
+- Remove QCA as a dependency, use OpenSSL API directly
+- Rename Pool/Nodes to Devices
+- About page shows which git commit was used for build
+- Link haveclip-core as a static library
+
 * Tue Jan 06 2015 - version 0.14.0
 - Built-in certificate generator
 - Fixes in clipboard history reorganization

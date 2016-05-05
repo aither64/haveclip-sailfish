@@ -10,17 +10,13 @@ Clipboard is instantly synchronized across all your devices. It can handle all
 forms of text, images and even application-specific data.
 
 HaveClip is multiplatform. Copy something in one OS, paste in another.
-Supports Windows, Linux, Mac OS X and Sailfish OS.
+Supports Windows, Linux, Mac OS X, Sailfish OS and Android.
 
 Home page: http://www.havefun.cz/projects/haveclip/
 
 Installation
 ------------
 HaveClip is available in Harbour.
-
-Build
------
-See BUILD.md.
 
 Known issues
 ------------
