@@ -58,7 +58,7 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 text: page.styledRichText(
                     qsTr("version v") + manager.version + " (" + qsTr("commit") + " " +
-                    '<a href="https://github.com/aither64/haveclip-mobile/tree/'+ manager.commitSha1 +'">' +
+                    '<a href="https://github.com/aither64/haveclip-sailfish/tree/'+ manager.commitSha1 +'">' +
                     manager.commitSha1.slice(0, 7) +'</a>)')
                 onLinkActivated: Qt.openUrlExternally(link)
             }
