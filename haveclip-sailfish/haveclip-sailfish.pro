@@ -11,6 +11,11 @@ TARGET = harbour-haveclip
 CONFIG += sailfishapp
 DEFINES += MER_SAILFISH
 
+appicons.path = /usr/share/icons/hicolor
+appicons.files = gfx/icons/*
+
+INSTALLS += appicons
+
 INCLUDEPATH += ../haveclip-core/src
 
 SOURCES += \
